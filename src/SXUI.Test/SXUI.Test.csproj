@@ -96,9 +96,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Simplic.DynamicUI.csproj">
+    <ProjectReference Include="..\Simplic.CXUI.csproj">
       <Project>{624ccc63-e7dd-4ac7-9fd1-81701004343c}</Project>
-      <Name>Simplic.DynamicUI</Name>
+      <Name>Simplic.CXUI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
