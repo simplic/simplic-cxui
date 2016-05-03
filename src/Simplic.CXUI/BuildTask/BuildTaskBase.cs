@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simplic.DynamicUI.BuildTask
+namespace Simplic.CXUI.BuildTask
 {
     /// <summary>
     /// Base class which must be implemented in all build steps

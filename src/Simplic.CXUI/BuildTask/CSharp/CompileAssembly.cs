@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Simplic.DynamicUI.BuildTask
+namespace Simplic.CXUI.BuildTask
 {
     /// <summary>
     /// Compile final assembly using Roslyn

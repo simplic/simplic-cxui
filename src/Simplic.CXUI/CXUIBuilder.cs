@@ -14,8 +14,9 @@ using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Simplic.CXUI.BuildTask;
 
-namespace Simplic.DynamicUI
+namespace Simplic.CXUI
 {
     /// <summary>
     /// Standalone-Xaml-UI builder class, to create UIs which only basis on XAML and pack tham into an assembly
@@ -318,6 +319,17 @@ namespace Simplic.DynamicUI
             set
             {
                 assemblyName = value;
+            }
+        }
+
+        /// <summary>
+        /// List of tasks which will be exxecuted during building process.
+        /// </summary>
+        public IList<BuildTaskBase> Tasks
+        {
+            get
+            {
+                return tasks;
             }
         }
         #endregion

@@ -96,7 +96,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Simplic.CXUI.csproj">
+    <ProjectReference Include="..\Simplic.CXUI\Simplic.CXUI.csproj">
       <Project>{624ccc63-e7dd-4ac7-9fd1-81701004343c}</Project>
       <Name>Simplic.CXUI</Name>
     </ProjectReference>

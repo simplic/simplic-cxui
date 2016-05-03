@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simplic.DynamicUI.BuildTask
+namespace Simplic.CXUI.BuildTask
 {
     /// <summary>
     /// Task for compiling xaml into baml and save in the temporary output directory

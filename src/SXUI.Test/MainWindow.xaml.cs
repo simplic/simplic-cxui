@@ -1,4 +1,4 @@
-﻿using Simplic.DynamicUI;
+﻿using Simplic.CXUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
