@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Simplic.Lexer</name>
+    </assembly>
+    <members>
+        <member name="T:Simplic.InternAssemblyVersion">
+            <summary>
+            Version of the Simplic Studio
+            </summary>
+        </member>
+        <member name="F:Simplic.InternAssemblyVersion.AssemblyFileVersion">
+            <summary>
+            The AssemblyFileVersion of this web part
+            </summary>
+        </member>
+        <member name="T:Simplic.Lexer.ILexerConstants">
+            <summary>
+            Lexer constants, for plitting strings
+            </summary>
+        </member>
+        <member name="P:Simplic.Lexer.ILexerConstants.TokenSeperator">
+            <summary>
+            Strings which seperates tokens
+            </summary>
+        </member>
+        <member name="P:Simplic.Lexer.ILexerConstants.FollowingTokens">
+            <summary>
+            Auto complete tokens, for example making >= out of > =
+            </summary>
+        </member>
+        <member name="P:Simplic.Lexer.ILexerConstants.ComplexToken">
+            <summary>
+            Complex tokens, will keep tokens to gether, like "This is a complex token"
+            </summary>
+        </member>
+        <member name="T:Simplic.Lexer.QuotedParameterParserResult">
+            <summary>
+            Result of a parsed-parameter
+            </summary>
+        </member>
+        <member name="T:Simplic.Lexer.Tokenizer">
+            <summary>
+            Tokenizer, which split the code into single tokens
+            </summary>
+        </member>
+        <member name="M:Simplic.Lexer.Tokenizer.#ctor(Simplic.Lexer.ILexerConstants)">
+            <summary>
+            Create
+            </summary>
+        </member>
+        <member name="M:Simplic.Lexer.Tokenizer.Parse(System.String)">
+            <summary>
+            Parse script into tokens
+            </summary>
+            <param name="Code"></param>
+        </member>
+        <member name="P:Simplic.Lexer.Tokenizer.Tokens">
+            <summary>
+            Tokens for the current tokenizer
+            </summary>
+        </member>
+    </members>
+</doc>

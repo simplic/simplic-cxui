@@ -1,0 +1,391 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Simplic.CommandShell</name>
+    </assembly>
+    <members>
+        <member name="T:Simplic.InternAssemblyVersion">
+            <summary>
+            Version of the Simplic Studio
+            </summary>
+        </member>
+        <member name="F:Simplic.InternAssemblyVersion.AssemblyFileVersion">
+            <summary>
+            The AssemblyFileVersion of this web part
+            </summary>
+        </member>
+        <member name="T:Simplic.CommandShell.CommandDescriptionAttribute">
+            <summary>
+            Command description attributes (for the help text)
+            </summary>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandDescriptionAttribute.#ctor(System.String)">
+            <summary>
+            Create new command description
+            </summary>
+            <param name="description">Description text</param>
+        </member>
+        <member name="P:Simplic.CommandShell.CommandDescriptionAttribute.Description">
+            <summary>
+            Description text
+            </summary>
+        </member>
+        <member name="T:Simplic.CommandShell.ParameterDescriptionAttribute">
+            <summary>
+            Description attribute for parameter
+            </summary>
+        </member>
+        <member name="M:Simplic.CommandShell.ParameterDescriptionAttribute.#ctor(System.String,System.Boolean,System.String)">
+            <summary>
+            Create new parameter description
+            </summary>
+            <param name="parameterName">Name of the parameter</param>
+            <param name="isRequired">Defines wether the parameter is required</param>
+            <param name="description">Descriptiontext of the parameter</param>
+        </member>
+        <member name="P:Simplic.CommandShell.ParameterDescriptionAttribute.ParameterName">
+            <summary>
+            Name of the parameter
+            </summary>
+        </member>
+        <member name="P:Simplic.CommandShell.ParameterDescriptionAttribute.IsRequired">
+            <summary>
+            Is required
+            </summary>
+        </member>
+        <member name="P:Simplic.CommandShell.ParameterDescriptionAttribute.Description">
+            <summary>
+            Description text
+            </summary>
+        </member>
+        <member name="T:Simplic.CommandShell.CommandShellCommandDelegate">
+            <summary>
+            Delegate which must be used to register shell methods
+            </summary>
+            <param name="commandName">Name of the command</param>
+            <param name="parameter">array with parameter</param>
+            <returns>Result of the command</returns>
+        </member>
+        <member name="T:Simplic.CommandShell.CommandShellCommand">
+            <summary>
+            Single shell command
+            </summary>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellCommand.#ctor">
+            <summary>
+            Init everything
+            </summary>        
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellCommand.#ctor(System.String,Simplic.CommandShell.CommandShellCommandDelegate,System.String[])">
+            <summary>
+            Create shell command
+            </summary>
+            <param name="commandName">name of the command</param>
+            <param name="methodDelegate">Delegate to the command</param>
+            <param name="requiredParameter">Reqwuired parameter for the command</param>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellCommand.#ctor(System.String,System.Type,System.String,System.String[])">
+            <summary>
+            Create shell command
+            </summary>
+            <param name="commandName">name of the command</param>
+            <param name="classType">Type of the class</param>
+            <param name="methodName">Name of the method to invoke</param>
+            <param name="requiredParameter">Reqwuired parameter for the command</param>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellCommand.#ctor(System.String,System.Object,System.String,System.String[])">
+            <summary>
+            Create shell command
+            </summary>
+            <param name="commandName">name of the command</param>
+            <param name="classInstance">Type of the class</param>
+            <param name="methodName">Name of the method to invoke</param>
+            <param name="requiredParameter">Reqwuired parameter for the command</param>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellCommand.GetHelpText">
+            <summary>
+            Get the help text (command) for the current command
+            </summary>
+            <returns>Help text as a string</returns>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellCommand.GetMethodHelpText">
+            <summary>
+            Get the help text (parameter) for the current command
+            </summary>
+            <returns>Help text as a string</returns>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellCommand.Execute(Simplic.CommandShell.CommandShellParameter[])">
+            <summary>
+            Execute the current command
+            </summary>
+            <param name="parameter">Parameter</param>
+            <returns>result of the command</returns>
+        </member>
+        <member name="P:Simplic.CommandShell.CommandShellCommand.CommandName">
+            <summary>
+            Name of the command
+            </summary>
+        </member>
+        <member name="P:Simplic.CommandShell.CommandShellCommand.MethodDelegate">
+            <summary>
+            Delegate to the method which will be executed with the command
+            </summary>
+        </member>
+        <member name="P:Simplic.CommandShell.CommandShellCommand.RequiredParameter">
+            <summary>
+            Array of required parameter
+            </summary>
+        </member>
+        <member name="P:Simplic.CommandShell.CommandShellCommand.MethodName">
+            <summary>
+            Name of the method which will be invoked
+            </summary>
+        </member>
+        <member name="P:Simplic.CommandShell.CommandShellCommand.ClassType">
+            <summary>
+            Type of the class in which the method will be invoked
+            </summary>
+        </member>
+        <member name="P:Simplic.CommandShell.CommandShellCommand.ClassInstance">
+            <summary>
+            Instance of a class
+            </summary>
+        </member>
+        <member name="T:Simplic.CommandShell.CommandShellParameter">
+            <summary>
+            Shell parameter
+            </summary>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellParameter.#ctor(System.String,System.String[])">
+            <summary>
+            Create a parameter
+            </summary>
+            <param name="name">Name of the parameter</param>
+            <param name="value">Value of the parameter</param>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellParameter.Equals(System.Object)">
+            <summary>
+            Equals, compare the name of two ShellParameter caseinsensitive
+            </summary>
+            <param name="obj">Instance of the object to compare</param>
+            <returns>True if the objects are equal</returns>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellParameter.GetHashCode">
+            <summary>
+            Hash-Code of the Parameter-Name
+            </summary>
+            <returns>Hashcode</returns>
+        </member>
+        <member name="P:Simplic.CommandShell.CommandShellParameter.Name">
+            <summary>
+            Name of the parameter
+            </summary>
+        </member>
+        <member name="P:Simplic.CommandShell.CommandShellParameter.Value">
+            <summary>
+            Value of the parameter
+            </summary>
+        </member>
+        <member name="T:Simplic.CommandShell.CommandShellParameterCollection">
+            <summary>
+            Contains a list of parameter
+            </summary>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellParameterCollection.#ctor">
+            <summary>
+            Create parameter collection
+            </summary>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellParameterCollection.GetParameter(System.String)">
+            <summary>
+            Get a parameter from the collection
+            </summary>
+            <param name="parameterName">Name of the parameter</param>
+            <returns>Instance of a shellparameter if found, else null</returns>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellParameterCollection.GetParameterValueAsString(System.String)">
+            <summary>
+            Get a parameter value as a string.
+            </summary>
+            <param name="parameterName">Name of the parameter</param>
+            <returns>Returns empty string if the parameter does not exists</returns>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellParameterCollection.ContainsParameter(System.String)">
+            <summary>
+            Proof wether a parameter exists
+            </summary>
+            <param name="parameterName">Name of the parameter</param>
+            <returns>True if the parameter exists</returns>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellParameterCollection.AddParameter(Simplic.CommandShell.CommandShellParameter)">
+            <summary>
+            Add shell-parameter
+            </summary>
+            <param name="shellParameter">Instance of the parameter</param>
+        </member>
+        <member name="P:Simplic.CommandShell.CommandShellParameterCollection.Parameter">
+            <summary>
+            List with all parameter
+            </summary>
+        </member>
+        <member name="T:Simplic.CommandShell.CommandShellContext">
+            <summary>
+            The shell context is the core of the command execution. Here are all commands registred. A ShellContext can be created of the ShellManager
+            </summary>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellContext.#ctor(System.String)">
+            <summary>
+            Create new shell context
+            </summary>
+            <param name="contextName"></param>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellContext.RegisterMethod(System.String,Simplic.CommandShell.CommandShellCommandDelegate,System.String[])">
+            <summary>
+            Register a method to the shell context
+            </summary>
+            <param name="cmdName">name of the cmd, must be unique in one shell context</param>
+            <param name="methodDelegate">Delegate to the .Net method</param>
+            <param name="requiredParameter">name of the required parameter, so that the system will automatically return an error if not all parameter were passed</param>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellContext.RegisterStaticMethod(System.String,System.Type,System.String,System.String[])">
+            <summary>
+            Register a static method to the shell context
+            </summary>
+            <param name="cmdName">name of the cmd, must be unique in one shell context</param>
+            <param name="classType">Type of the static class or the class instance</param>
+            <param name="methodName">Name of the method</param>
+            <param name="requiredParameter">All parameter</param>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellContext.RegisterMethod(System.String,System.Object,System.String,System.String[])">
+            <summary>
+            Register a method to the shell context
+            </summary>
+            <param name="cmdName">name of the cmd, must be unique in one shell context</param>
+            <param name="classInstance">Instance of a class</param>
+            <param name="methodName">Name of the method</param>
+            <param name="requiredParameter">All parameter</param>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellContext.Execute(System.String,System.Boolean@)">
+            <summary>
+            Execute a shell command
+            </summary>
+            <param name="command">Command line content</param>
+            <param name="errorOccured">Out parameter which defines wether an error occured</param>
+            <returns>Return-Message of the execute method</returns>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellContext.ExecuteMultiline(System.String,System.Boolean,System.Boolean@)">
+            <summary>
+            Execute multiple commands
+            </summary>
+            <param name="commands">String with commands</param>
+            <param name="continueOnError">Continue if one of the commands failed</param>
+            <param name="errorOccured">Continues if an error occurse</param>
+            <returns>Result-String</returns>
+        </member>
+        <member name="P:Simplic.CommandShell.CommandShellContext.ContextName">
+            <summary>
+            Unique name of the context
+            </summary>
+        </member>
+        <member name="T:Simplic.CommandShell.Parser.ShellCommandParser">
+            <summary>
+            Parse the commands
+            </summary>
+        </member>
+        <member name="M:Simplic.CommandShell.Parser.ShellCommandParser.ParseCommand(System.String)">
+            <summary>
+            Parse single command
+            </summary>
+            <param name="input">Input</param>
+            <returns>Tuple with the parameter name and a list of parameter-values</returns>
+        </member>
+        <member name="T:Simplic.CommandShell.CommandShellManager">
+            <summary>
+            The shell manager is the root of the shell lib framework.
+            </summary>
+        </member>
+        <member name="P:Simplic.CommandShell.CommandShellManager.Singleton">
+            <summary>
+            Singleton access to the shell manager instance
+            </summary>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellManager.#ctor">
+            <summary>
+            Create the shell manager
+            </summary>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellManager.ExecuteArgs(System.String,System.String[],System.Boolean@)">
+            <summary>
+            Execute program arguments as a shell command
+            </summary>
+            <param name="cmdName">Command name</param>
+            <param name="args">Arguments</param>
+            <param name="errorOccured">Out parameter which defines wether an error occured</param>
+            <returns>Result of the cmd</returns>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellManager.ExecuteArgs(System.String[],System.Boolean@)">
+            <summary>
+            Executes a program based on program args
+            Command included
+            </summary>
+            <param name="args">1:1 args program parameter</param>
+            <param name="errorOccured">Out parameter which defines wether an error occured</param>
+            <returns></returns>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellManager.Execute(System.String,System.Boolean@)">
+            <summary>
+            Execute a shell command
+            </summary>
+            <param name="command">Command line content</param>
+            <param name="errorOccured">Out parameter which defines wether an error occured</param>
+            <returns>Return-Message of the execute method</returns>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellManager.ExecuteMultiline(System.String,System.Boolean,System.Boolean@)">
+            <summary>
+            Execute multiple commands
+            </summary>
+            <param name="commands">String with commands</param>
+            <param name="continueOnError">Continues if an error occurse</param>
+            <param name="errorOccured">Out parameter which defines wether an error occured</param>
+            <returns>Result-String</returns>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellManager.ExecuteFile(System.String,System.Boolean,System.Boolean@)">
+            <summary>
+            Execute all commands in a file
+            </summary>
+            <param name="fileName">Path to the file</param>
+            <param name="continueOnError">Continues if an error occurse</param>
+            <param name="errorOccured">Out parameter which defines wether an error occured</param>
+            <returns>Result-String</returns>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellManager.CreateShellContext(System.String)">
+            <summary>
+            Create shell context, if it is the first shell context, it will be activated directly
+            </summary>
+            <param name="contextName">Name of the context</param>
+            <returns>Instance if the shell context</returns>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellManager.ActivateShellContext(System.String)">
+            <summary>
+            Activate a shell context by its name, if the shell context is already activated, nothing happens.
+            </summary>
+            <param name="contextName">Name of the shell context</param>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellManager.ActivateLastShellContext">
+            <summary>
+            Move to last shell context. For example for nested contexts and exit commands
+            </summary>
+        </member>
+        <member name="M:Simplic.CommandShell.CommandShellManager.CoutActivatedShellCotnexts">
+            <summary>
+            Cound the active shell contexts
+            </summary>
+            <returns>Number of items</returns>
+        </member>
+        <member name="P:Simplic.CommandShell.CommandShellManager.ActiveShellContext">
+            <summary>
+            Get the active shell context
+            </summary>
+        </member>
+    </members>
+</doc>

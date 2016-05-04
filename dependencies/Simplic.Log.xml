@@ -1,0 +1,386 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Simplic.Log</name>
+    </assembly>
+    <members>
+        <member name="T:Simplic.InternAssemblyVersion">
+            <summary>
+            Version of the Simplic Studio
+            </summary>
+        </member>
+        <member name="F:Simplic.InternAssemblyVersion.AssemblyFileVersion">
+            <summary>
+            The AssemblyFileVersion of this web part
+            </summary>
+        </member>
+        <member name="T:Simplic.Log.DebugInformation">
+            <summary>
+            Contains all information for debugging purpose
+            </summary>
+        </member>
+        <member name="P:Simplic.Log.DebugInformation.AreaName">
+            <summary>
+            Name of the debug area
+            </summary>
+        </member>
+        <member name="P:Simplic.Log.DebugInformation.IsActive">
+            <summary>
+            Defines, whether the debug-area is activated or not
+            </summary>
+        </member>
+        <member name="P:Simplic.Log.DebugInformation.UseStopwatch">
+            <summary>
+            Defines, whether to use and print Stopwatch results with debug information
+            </summary>
+        </member>
+        <member name="P:Simplic.Log.DebugInformation.Stopwatch">
+            <summary>
+            Internal stopwatch instance
+            </summary>
+        </member>
+        <member name="T:Simplic.Log.LogTriggerEventArgs">
+            <summary>
+            Argument for the log write trigger
+            </summary>
+        </member>
+        <member name="M:Simplic.Log.LogTriggerEventArgs.ParameterExists(System.String)">
+            <summary>
+            Proof, whether a parameter exists
+            </summary>
+            <param name="parameterName">Name of the parameter to proof</param>
+            <returns>True if the parameter exists</returns>
+        </member>
+        <member name="T:Simplic.Log.LogType">
+            <summary>
+            Defines all available Log-Types
+            </summary>
+        </member>
+        <member name="F:Simplic.Log.LogType.Debug">
+            <summary>
+            The logged information is for debug-reasons only
+            </summary>
+        </member>
+        <member name="F:Simplic.Log.LogType.Info">
+            <summary>
+            The logged information is a general information,
+            for example some output on application starup
+            </summary>
+        </member>
+        <member name="F:Simplic.Log.LogType.Warning">
+            <summary>
+            The logged information is a warning, for example if
+            something not critical happens
+            </summary>
+        </member>
+        <member name="F:Simplic.Log.LogType.Error">
+            <summary>
+            The logged information is an error, which interrupt
+            the application
+            </summary>
+        </member>
+        <member name="T:Simplic.Log.Console.ConsoleLogOutput">
+            <summary>
+            Log provider to write log message to the windows console
+            </summary>
+        </member>
+        <member name="M:Simplic.Log.Console.ConsoleLogOutput.Write(System.String,System.String,System.Exception,Simplic.Log.LogType,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Write a message to the windows console
+            </summary>
+            <param name="message">Message text</param>
+            <param name="logArea">Area where the message should be printed</param>
+            <param name="ex">Passed exception</param>
+            <param name="logType">Type of the log entry</param>
+            <param name="parameter">Passed parameter to the log provider</param>
+        </member>
+        <member name="M:Simplic.Log.Console.ConsoleLogOutput.Initialize(System.Object[])">
+            <summary>
+            Initialize Console log
+            </summary>
+            <param name="parameter">Parameter - no needed</param>
+            <returns>True</returns>
+        </member>
+        <member name="M:Simplic.Log.Console.ConsoleLogOutput.Activate">
+            <summary>
+            Activate the current log provider
+            </summary>
+        </member>
+        <member name="M:Simplic.Log.Console.ConsoleLogOutput.Deactivate">
+            <summary>
+            Deactive the current log provider
+            </summary>
+        </member>
+        <member name="M:Simplic.Log.Console.ConsoleLogOutput.Remove">
+            <summary>
+            Remove the current log provider
+            </summary>
+        </member>
+        <member name="M:Simplic.Log.Console.ConsoleLogOutput.Shutdown">
+            <summary>
+            Showdown the current log provider
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Simplic.Log.Console.ConsoleLogOutput.IsInstalled">
+            <summary>
+            Returns true, if the provder is installerd
+            </summary>
+        </member>
+        <member name="P:Simplic.Log.Console.ConsoleLogOutput.ProviderName">
+            <summary>
+            Name of the provlder
+            </summary>
+        </member>
+        <member name="T:Simplic.Log.FileSystem.FileLogConfiguration">
+            <summary>
+            Contains all configurations for the FileLog-Provider
+            </summary>
+        </member>
+        <member name="P:Simplic.Log.FileSystem.FileLogConfiguration.LogfileName">
+            <summary>
+            Name of the log file
+            </summary>
+        </member>
+        <member name="P:Simplic.Log.FileSystem.FileLogConfiguration.LogfileDirectory">
+            <summary>
+            Directory to which the logfiles should write
+            </summary>
+        </member>
+        <member name="P:Simplic.Log.FileSystem.FileLogConfiguration.Append">
+            <summary>
+            If set to true, the log message will be append after startup a new application instance
+            If set to false, the files will be truncated at first
+            </summary>
+        </member>
+        <member name="T:Simplic.Log.FileSystem.FileLogOutput">
+            <summary>
+            Logprovider to write all log messages to the file system
+            </summary>
+        </member>
+        <member name="M:Simplic.Log.FileSystem.FileLogOutput.#ctor">
+            <summary>
+            Create new Log-Provider
+            </summary>
+        </member>
+        <member name="M:Simplic.Log.FileSystem.FileLogOutput.Write(System.String,System.String,System.Exception,Simplic.Log.LogType,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Write messages to the log files
+            </summary>
+            <param name="message">Message text</param>
+            <param name="logArea">Area where the message should be printed</param>
+            <param name="ex">Passed exception</param>
+            <param name="logType">Type of the log entry</param>
+            <param name="parameter">Passed parameter to the log provider</param>
+        </member>
+        <member name="M:Simplic.Log.FileSystem.FileLogOutput.Initialize(System.Object[])">
+            <summary>
+            Initialize Console log
+            </summary>
+            <param name="parameter">Need an instance of <see cref="T:Simplic.Log.FileSystem.FileLogConfiguration">FileLogConfiguration</see>/> as the parameter</param>
+            <returns>True if the provider was initialized correctly</returns>
+        </member>
+        <member name="M:Simplic.Log.FileSystem.FileLogOutput.Activate">
+            <summary>
+            Activate the current log provider
+            </summary>
+        </member>
+        <member name="M:Simplic.Log.FileSystem.FileLogOutput.Deactivate">
+            <summary>
+            Deactive the current log provider
+            </summary>
+        </member>
+        <member name="M:Simplic.Log.FileSystem.FileLogOutput.Remove">
+            <summary>
+            Remove the current log provider
+            </summary>
+        </member>
+        <member name="M:Simplic.Log.FileSystem.FileLogOutput.Shutdown">
+            <summary>
+            Showdown the current log provider
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Simplic.Log.FileSystem.FileLogOutput.IsInstalled">
+            <summary>
+            Returns true, if the provder is installerd
+            </summary>
+        </member>
+        <member name="P:Simplic.Log.FileSystem.FileLogOutput.ProviderName">
+            <summary>
+            Name of the current provider
+            </summary>
+        </member>
+        <member name="T:Simplic.Log.ILogOutput">
+            <summary>
+            LogOutput interface, must be implemented in all log provider
+            </summary>
+        </member>
+        <member name="M:Simplic.Log.ILogOutput.Write(System.String,System.String,System.Exception,Simplic.Log.LogType,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Write message to implemented output
+            </summary>
+            <param name="message">Formatted message content</param>
+            <param name="ex">Exception</param>
+            <param name="logType">Type of the log</param>
+            <param name="parameter">List with all parameter</param>
+        </member>
+        <member name="T:Simplic.Log.LogManager">
+            <summary>
+            Logging Manager is the root of the logging system. All actions must be executed over this class.
+            </summary>
+        </member>
+        <member name="E:Simplic.Log.LogManager.OnWriteLog">
+            <summary>
+            Will be called before a log is written. Here you can handle some logType changes and so on
+            </summary>
+        </member>
+        <member name="M:Simplic.Log.LogManager.#ctor">
+            <summary>
+            Create new Log-Manager
+            </summary>
+        </member>
+        <member name="M:Simplic.Log.LogManager.SetMessageConstant(System.String,System.String)">
+            <summary>
+            Set a constant which will appear in every method
+            </summary>
+            <param name="parameterName">Name of the parameter</param>
+            <param name="parameterValue">Value of the parameter</param>
+        </member>
+        <member name="M:Simplic.Log.LogManager.GetMessageConstant(System.String)">
+            <summary>
+            Return the value of a constnat if exists, else return an empty string
+            </summary>
+            <param name="constantName">Name of the constant</param>
+            <returns>Constant-Content or an empty string</returns>
+        </member>
+        <member name="M:Simplic.Log.LogManager.RemoveMessageConstant(System.String)">
+            <summary>
+            Remove the constant parameter
+            </summary>
+            <param name="parameterName">Name of the parameter</param>
+        </member>
+        <member name="M:Simplic.Log.LogManager.SetMessageFormat(System.String,Simplic.Log.LogType[])">
+            <summary>
+            Set the message-format for a logType.
+            </summary>
+            <param name="logType">Log type</param>
+            <param name="messageFormat">Message format string. The message must be formatted liek this: Your message [parameterName]. Example
+            [timestamp] [logType] - [message]
+            Predefines consts:
+            [message]
+            [timestamp]
+            [threadId]
+            [threadName]
+            [message]
+            [exception]
+            [innerException]
+            [osMachineName]
+            [osUserName]
+            [osVersion]
+            [osArchitecture]
+            [osDomain]
+            [memoryInformation]
+            [processName]
+            [cmdLineArgs]
+            </param>
+        </member>
+        <member name="M:Simplic.Log.LogManager.ActivateDebugArea(Simplic.Log.DebugInformation[])">
+            <summary>
+            Activate a list of debug areas
+            </summary>
+            <param name="areaNames">List of debug areas</param>
+        </member>
+        <member name="M:Simplic.Log.LogManager.DeactivateDebugArea(System.String[])">
+            <summary>
+            deactivate a list of debug areas
+            </summary>
+            <param name="areaNames">List of debug areas</param>
+        </member>
+        <member name="M:Simplic.Log.LogManager.DebugAreaIsActive(System.String)">
+            <summary>
+            Proof wether a debug area is active. If the debug area does not exists, the result will be true
+            </summary>
+            <param name="debugAreaName">Name of the debug area</param>
+            <returns>Return the debug activate state</returns>
+        </member>
+        <member name="M:Simplic.Log.LogManager.Write(System.String,System.Exception,Simplic.Log.LogType,System.Object,System.String,System.String)">
+            <summary>
+            Write a message to all active log Providers
+            </summary>
+            <param name="message">Message</param>
+            <param name="ex">Exception instance</param>
+            <param name="logType">Type of the message</param>
+            <param name="parameter">Parameter</param>
+            <param name="messageFormat">Overrides the default message format for the current message</param>
+        </member>
+        <member name="M:Simplic.Log.LogManager.ResetDebugStopwatch(System.String)">
+            <summary>
+            Reset the stopwatch for an given debug area. This can be useful, if you want to reset the watch before a specifig action
+            </summary>
+            <param name="debugArea">Name of the debug area</param>
+        </member>
+        <member name="M:Simplic.Log.LogManager.Debug(System.String,System.Exception,System.Object,System.String,System.String)">
+            <summary>
+            Write debug message
+            </summary>
+            <param name="message">Message</param>
+            <param name="ex">Exception instance</param>
+            <param name="logType">Type of the message</param>
+            <param name="debugArea">Debug area to activate or deactivate debug messages</param>
+            <param name="messageFormat">Overrides the default message format for the current message</param>
+        </member>
+        <member name="M:Simplic.Log.LogManager.Info(System.String,System.Exception,System.Object,System.String)">
+            <summary>
+            Write information message
+            </summary>
+            <param name="message">Message</param>
+            <param name="ex">Exception instance</param>
+            <param name="messageFormat">Overrides the default message format for the current message</param>
+        </member>
+        <member name="M:Simplic.Log.LogManager.Warning(System.String,System.Exception,System.Object,System.String)">
+            <summary>
+            Write warning message
+            </summary>
+            <param name="message">Message</param>
+            <param name="ex">Exception instance</param>
+            <param name="messageFormat">Overrides the default message format for the current message</param>
+        </member>
+        <member name="M:Simplic.Log.LogManager.Error(System.String,System.Exception,System.Object,System.String)">
+            <summary>
+            Write error message
+            </summary>
+            <param name="message">Message</param>
+            <param name="ex">Exception instance</param>
+            <param name="messageFormat">Overrides the default message format for the current message</param>
+        </member>
+        <member name="M:Simplic.Log.LogManager.ToInternConstantName(System.String)">
+            <summary>
+            Formats a constant name to the constant name used to access the constant values (dictionary)
+            </summary>
+            <param name="constantName"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Simplic.Log.LogManager.ProviderCollectionName">
+            <summary>
+            Provider name
+            </summary>
+        </member>
+        <member name="T:Simplic.Log.LogManagerInstance">
+            <summary>
+            Represents an instance of the simplic logging system. The only member in this class is Instance, which
+            is an instance <see cref="T:Simplic.Log.LogManager"/>
+            </summary>
+        </member>
+        <member name="F:Simplic.Log.LogManagerInstance.logManager">
+            <summary>
+            Create instance of a log manager
+            </summary>
+        </member>
+        <member name="P:Simplic.Log.LogManagerInstance.Instance">
+            <summary>
+            Represents an instance of the default LogManager. This instance can be used for applicate wide logging
+            </summary>
+        </member>
+    </members>
+</doc>

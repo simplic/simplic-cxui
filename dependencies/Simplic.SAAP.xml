@@ -1,0 +1,506 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Simplic.SAAP</name>
+    </assembly>
+    <members>
+        <member name="T:Simplic.InternAssemblyVersion">
+            <summary>
+            Version of the Simplic Studio
+            </summary>
+        </member>
+        <member name="F:Simplic.InternAssemblyVersion.AssemblyFileVersion">
+            <summary>
+            The AssemblyFileVersion of this web part
+            </summary>
+        </member>
+        <member name="T:Simplic.SAAP.ProviderInstanceInfo">
+            <summary>
+            Stores all provider information
+            </summary>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderInstanceInfo.#ctor(Simplic.SAAP.IProvider)">
+            <summary>
+            Create provider instance
+            </summary>
+            <param name="instance">Instance of a Provider</param>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderInstanceInfo.CallMethodNoReturn(System.String,System.Type[],System.Type[],System.Object[])">
+            <summary>
+            Call a method with no return value
+            </summary>
+            <param name="methodName">Name of the method</param>
+            <param name="types">List with parameter types</param>
+            <param name="generictypes">List with generic types</param>
+            <param name="parameter">List of parameters</param>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderInstanceInfo.CallMethod``1(System.String,System.Type[],System.Type[],System.Object[])">
+            <summary>
+            Call a method with an return value
+            </summary>
+            <typeparam name="T">Return type of the method</typeparam>
+            <param name="methodName">Name of the method</param>
+            <param name="types">List with parameter types</param>
+            <param name="generictypes">List with generic types</param>
+            <param name="parameter">List of parameters</param>
+            <returns>Returnvalue of the method</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderInstanceInfo.GetMemberValue``1(System.String,System.Object[])">
+            <summary>
+            Get value of a member
+            </summary>
+            <typeparam name="T">Type of the member</typeparam>
+            <param name="memberName">Name of the member</param>
+            <param name="index">Index object</param>
+            <returns>Value of the property</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderInstanceInfo.SetMemberValue``1(System.String,``0,System.Object[])">
+            <summary>
+            Set value of a member
+            </summary>
+            <typeparam name="T">Type of the member</typeparam>
+            <param name="memberName"></param>
+            <param name="value"></param>
+            <param name="index"></param>
+        </member>
+        <member name="P:Simplic.SAAP.ProviderInstanceInfo.Instance">
+            <summary>
+            PlugIn instance
+            </summary>
+        </member>
+        <member name="T:Simplic.SAAP.GenericPlaceHolder">
+            <summary>
+            Placeholder for generic values
+            </summary>
+        </member>
+        <member name="T:Simplic.SAAP.ProviderCollection">
+            <summary>
+            Intern provider collection
+            </summary>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollection.#ctor(System.Type,System.String)">
+            <summary>
+            Crate new provider collection, which stores all providers
+            </summary>
+            <param name="interfaceType">Type of the implementation interface</param>
+            <param name="providerCollectionName">Name of the provider collection</param>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollection.RegisterProviderType(System.Type,System.String)">
+            <summary>
+            Register new puzzly
+            </summary>
+            <param name="implementation">Type of the provider implementation</param>
+            <param name="implementationName">Unique name of the Provider</param>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollection.ClearInstances">
+            <summary>
+            Clear all instances
+            </summary>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollection.DeactivateAll">
+            <summary>
+            Deactivate all instances
+            </summary>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollection.GetNewIndependentInstance``1(System.String,System.Object[])">
+            <summary>
+            Create new instance of a Provider
+            </summary>
+            <typeparam name="T">Type of the Provider</typeparam>
+            <param name="implementationName">Name of the Provider</param>
+            <param name="parameter">Parameter list for the initialize method</param>
+            <returns>Instance of the Provider</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollection.GetInstance``1(System.String,System.Boolean,System.Object[])">
+            <summary>
+            Get the instance of a Provider
+            </summary>
+            <typeparam name="T">Type of the Provider</typeparam>
+            <param name="implementationName">Name of the provider in the collection</param>
+            <param name="removeIfExists">Remove all existing providers from the given type</param>
+            <param name="parameter">Parameter of the initialize method</param>
+            <returns>Instance of a Provider</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollection.CallMethodNoReturn(System.String,System.Type[],System.Type[],System.Object[])">
+            <summary>
+            Call a method with no return value
+            </summary>
+            <param name="methodName">Name of the method</param>
+            <param name="types">List of parameter types</param>
+            <param name="generictypes">List with generic types</param>
+            <param name="parameter">List of parameters</param>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollection.CallMethod``1(System.String,System.Type[],System.Type[],System.Object[])">
+            <summary>
+            Call a method with an return value
+            </summary>
+            <typeparam name="T">Return type of the method</typeparam>
+            <param name="methodName">Name of the method</param>
+            <param name="types">List of parameter types</param>
+            <param name="generictypes">List with general type</param>
+            <param name="parameter">List of parameters</param>
+            <returns>List of returnvalue of the method</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollection.GetMemberValue``1(System.String,System.Object[])">
+            <summary>
+            Get value of a member
+            </summary>
+            <typeparam name="T">Type of the member</typeparam>
+            <param name="memberName">Name of the member</param>
+            <param name="index">Index object</param>
+            <returns>list of values of the property</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollection.SetMemberValue``1(System.String,``0,System.Object[])">
+            <summary>
+            Set value of a member
+            </summary>
+            <typeparam name="T">Type of the member</typeparam>
+            <param name="memberName"></param>
+            <param name="value"></param>
+            <param name="index"></param>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollection.Shutdown">
+            <summary>
+            Shutdown all instances
+            </summary>
+        </member>
+        <member name="P:Simplic.SAAP.ProviderCollection.InterfaceType">
+            <summary>
+            Interface type
+            </summary>
+        </member>
+        <member name="P:Simplic.SAAP.ProviderCollection.CollectionName">
+            <summary>
+            Collection name
+            </summary>
+        </member>
+        <member name="P:Simplic.SAAP.ProviderCollection.Instances">
+            <summary>
+            Dictionary withj all acitve instances (Get-ONLY)
+            </summary>
+        </member>
+        <member name="T:Simplic.SAAP.ProviderCollectionController`1">
+            <summary>
+            Main Provider-Manager. All Manager-Implementations must derive from this class
+            </summary>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollectionController`1.#ctor">
+            <summary>
+            Create provider collection controller, for implementing in a manager class
+            </summary>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollectionController`1.GetActiveProvider``1">
+            <summary>
+            Get all active providers
+            </summary>
+            <typeparam name="T">Type of the provider implementation interface</typeparam>
+            <returns>Array with active providers</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollectionController`1.GetActiveProvider">
+            <summary>
+            Get all active providers
+            </summary>
+            <returns>Array with active providers</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollectionController`1.CallMethodNoReturn(System.String,System.Type[],System.Type[],System.Object[])">
+            <summary>
+            Execute a provider method
+            </summary>
+            <param name="methodName">Name of the method</param>
+            <param name="types">List with parameter types</param>
+            <param name="generictypes">List with generic types</param>
+            <param name="parameter">List with parameter</param>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollectionController`1.CallMethod``1(System.String,System.Type[],System.Type[],System.Object[])">
+            <summary>
+            Execute a provider method and return a value
+            </summary>
+            <typeparam name="T">Return type</typeparam>
+            <param name="methodName">Name of the method</param>
+            <param name="types">Parameter type list</param>
+            <param name="generictypes">Generic type list</param>
+            <param name="parameter">List with parameter</param>
+            <returns>Return value as an array, becasue there could be more than one provider called</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollectionController`1.GetMemberValue``1(System.String,System.Object[])">
+            <summary>
+            Get a value from a member
+            </summary>
+            <typeparam name="T">Type of the member</typeparam>
+            <param name="memberName">Name of the member</param>
+            <param name="index">Index</param>
+            <returns>Value of the member</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollectionController`1.SetMemberValue``1(System.String,``0,System.Object[])">
+            <summary>
+            Set a member value
+            </summary>
+            <typeparam name="T">Type of the member</typeparam>
+            <param name="memberName"></param>
+            <param name="value">Name of the member</param>
+            <param name="index"></param>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollectionController`1.RegisterCollection(System.Type)">
+            <summary>
+            Register new provider collection
+            </summary>
+            <param name="interfaceType">Type of the interface which will be implemented in all providers in this colleciton</param>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollectionController`1.RegisterProviderType(System.Type,System.String)">
+            <summary>
+            Register new provider type which will be added to a provider collection
+            </summary>
+            <param name="implementation">Implementation of a Provider</param>
+            <param name="implementationName">Name of the implementation, it must be unique in a provider collection</param>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollectionController`1.Activate(System.String,System.Boolean,System.Boolean,System.Object[])">
+            <summary>
+            Activate a Provider
+            </summary>
+            <param name="implementationName">Name of the implementation in the collection</param>
+            <param name="deactivateOther">Deactivate all other, it is possible to </param>
+            <param name="getNewIfExists">Force new instance of the Provider</param>
+            <param name="parameter">Parameter for the init method</param>
+            <returns>Instance of the Provider</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollectionController`1.Activate``1(System.String,System.Boolean,System.Boolean,System.Object[])">
+            <summary>
+            Activate a Provider
+            </summary>
+            <typeparam name="T">Type of the Provider</typeparam>
+            <param name="implementationName">Name of the implementation in the collection</param>
+            <param name="deactivateOther">Deactivate all other, it is possible to </param>
+            <param name="getNewIfExists">Force new instance of the Provider</param>
+            <param name="parameter">Parameter for the init method</param>
+            <returns>Instance of the Provider</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollectionController`1.GetNewIndependentInstance``1(System.String,System.Object[])">
+            <summary>
+            Get new instance of a Provider
+            </summary>
+            <typeparam name="T">Type of the Provider</typeparam>
+            <param name="implementationName">Name of the provider in the provider collection</param>
+            <param name="parameter">Parameter list</param>
+            <returns>New instance of a Provider</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderCollectionController`1.Shutdown">
+            <summary>
+            Shutdown the current provider implementation
+            </summary>
+        </member>
+        <member name="P:Simplic.SAAP.ProviderCollectionController`1.ProviderCollectionName">
+            <summary>
+            Name of the provider controller, must be unique
+            </summary>
+        </member>
+        <member name="T:Simplic.SAAP.EmptyProviderCollectionController`1">
+            <summary>
+            Simple empty collection controller
+            </summary>
+            <typeparam name="T">IProvider type</typeparam>
+        </member>
+        <member name="M:Simplic.SAAP.EmptyProviderCollectionController`1.#ctor">
+            <summary>
+            Crate empty provider host
+            </summary>
+        </member>
+        <member name="P:Simplic.SAAP.EmptyProviderCollectionController`1.ProviderCollectionName">
+            <summary>
+            Name of the provider host
+            </summary>
+        </member>
+        <member name="T:Simplic.SAAP.SimpleProviderController`1">
+            <summary>
+            Provider controller, for writing provider based systems
+            </summary>
+        </member>
+        <member name="M:Simplic.SAAP.SimpleProviderController`1.#ctor(System.String)">
+            <summary>
+            Create provider controller
+            </summary>
+            <param name="name">Constroller name</param>
+        </member>
+        <member name="M:Simplic.SAAP.SimpleProviderController`1.AddProvider(System.Type,System.String)">
+            <summary>
+            Add a provider to the controller
+            </summary>
+            <param name="providerType">Type of the controller</param>
+            <param name="providerName">Name of the provider</param>
+        </member>
+        <member name="M:Simplic.SAAP.SimpleProviderController`1.GetNewInstance(System.String,System.Object[])">
+            <summary>
+            Get new Provider instance
+            </summary>
+            <param name="providerName">Name of the provider</param>
+            <param name="parameter">Parameter list</param>
+            <returns>Provider isntance</returns>
+        </member>
+        <member name="T:Simplic.SAAP.ProviderHost">
+            <summary>
+            Core of the SAAP. The ProviderHost is the central system for managing the SAAP System
+            </summary>
+        </member>
+        <member name="P:Simplic.SAAP.ProviderHost.Singleton">
+            <summary>
+            Singleton access to the ProviderHost
+            </summary>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderHost.#ctor">
+            <summary>
+            Create new ProviderHost and initialize everything
+            </summary>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderHost.GetActiveProvider``1(System.String)">
+            <summary>
+            Get all active providers
+            </summary>
+            <typeparam name="T">Type of the provider implementation interface</typeparam>
+            <param name="providerCollectionName">Name of the provider collection</param>
+            <returns>Array with active providers</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderHost.CallMethodNoReturn(System.String,System.String,System.Type[],System.Type[],System.Object[])">
+            <summary>
+            Execute a provider method
+            </summary>
+            <param name="providerCollectionName">Name of the provider collection</param>
+            <param name="methodName">Name of the method</param>
+            <param name="types">List with parameter types</param>
+            <param name="generictypes">List with generic types</param>
+            <param name="parameter">List with parameter</param>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderHost.CallMethod``1(System.String,System.String,System.Type[],System.Type[],System.Object[])">
+            <summary>
+            Execute a provider method and return a value
+            </summary>
+            <typeparam name="T">Return type</typeparam>
+            <param name="providerCollectionName">Name of the provider collection</param>
+            <param name="methodName">Name of the method</param>
+            <param name="types">List with parameter types</param>
+            <param name="generictypes">List with generic types</param>
+            <param name="parameter">List with parameter</param>
+            <returns>Return value as an array, becasue there could be more than one provider called</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderHost.GetMemberValue``1(System.String,System.String,System.Object[])">
+            <summary>
+            Get a value from a member
+            </summary>
+            <typeparam name="T">Type of the member</typeparam>
+            <param name="providerCollectionName">Name of the provider collection</param>
+            <param name="memberName">Name of the member</param>
+            /// <param name="index">Index</param>
+            <returns>Value of the member</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderHost.SetMemberValue``1(System.String,System.String,``0,System.Object[])">
+            <summary>
+            Set a member value
+            </summary>
+            <typeparam name="T">Type of the member</typeparam>
+            <param name="providerCollectionName">Name of the provider collection</param>
+            <param name="memberName"></param>
+            <param name="value">Name of the member</param>
+            <param name="index"></param>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderHost.RegisterCollection(System.Type,System.String)">
+            <summary>
+            Register new provider collection
+            </summary>
+            <param name="interfaceType">Type of the interface which will be implemented in all providers in this colleciton</param>
+            <param name="providerCollectionName">Name of the provider collection</param>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderHost.RegisterProviderType(System.String,System.Type,System.String)">
+            <summary>
+            Register new provider type which will be added to a provider collection
+            </summary>
+            <param name="providerCollectionName">Name of the provider collection</param>
+            <param name="implementation">Implementation of a Provider</param>
+            <param name="implementationName">Name of the implementation, it must be unique in a provider collection</param>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderHost.Activate(System.String,System.String,System.Boolean,System.Boolean,System.Object[])">
+            <summary>
+            Activate a Provider
+            </summary>
+            <param name="providerCollectionName">Name of the provider collection</param>
+            <param name="implementationName">Name of the implementation in the collection</param>
+            <param name="deactivateOther">Deactivate all other, it is possible to </param>
+            <param name="getNewIfExists">Force new instance of the Provider</param>
+            <param name="parameter">Parameter for the init method</param>
+            <returns>Instance of the Provider</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderHost.Activate``1(System.String,System.String,System.Boolean,System.Boolean,System.Object[])">
+            <summary>
+            Activate a Provider
+            </summary>
+            <typeparam name="T">Type of the Provider</typeparam>
+            <param name="providerCollectionName">Name of the provider collection</param>
+            <param name="implementationName">Name of the implementation in the collection</param>
+            <param name="deactivateOther">Deactivate all other, it is possible to </param>
+            <param name="getNewIfExists">Force new instance of the Provider</param>
+            <param name="parameter">Parameter for the init method</param>
+            <returns>Instance of the Provider</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderHost.GetNewIndependentInstance``1(System.String,System.String,System.Object[])">
+            <summary>
+            Get new instance of a Provider
+            </summary>
+            <typeparam name="T">Type of the Provider</typeparam>
+            <param name="providerCollectionName">name of the provider collection</param>
+            <param name="implementationName">Name of the provider in the provider collection</param>
+            <param name="parameter">Parameter list</param>
+            <returns>New instance of a Provider</returns>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderHost.Shutdown">
+            <summary>
+            Shutdown all provider implementations
+            </summary>
+        </member>
+        <member name="M:Simplic.SAAP.ProviderHost.Shutdown(System.String)">
+            <summary>
+            Shutdown one provider implementation
+            </summary>
+            <param name="providerCollectionName">Name of the collection</param>
+        </member>
+        <member name="T:Simplic.SAAP.IProvider">
+            <summary>
+            provider main interface, must be implemented in all provider implementations
+            </summary>
+        </member>
+        <member name="M:Simplic.SAAP.IProvider.Initialize(System.Object[])">
+            <summary>
+            Initialize the Provider
+            </summary>
+            <param name="parameter">Parameters</param>
+            <returns>True, if the provider was successfuly initialize</returns>
+        </member>
+        <member name="M:Simplic.SAAP.IProvider.Activate">
+            <summary>
+            Will be called when the provider is activated
+            </summary>
+        </member>
+        <member name="M:Simplic.SAAP.IProvider.Deactivate">
+            <summary>
+            Will be called when the provider is deactivated
+            </summary>
+        </member>
+        <member name="M:Simplic.SAAP.IProvider.Remove">
+            <summary>
+            Will be called when the provider was removed
+            </summary>
+        </member>
+        <member name="M:Simplic.SAAP.IProvider.Shutdown">
+            <summary>
+            Shutdown the Provider
+            </summary>
+            <returns>Returns true, when the provider was shutdown successfuly</returns>
+        </member>
+        <member name="P:Simplic.SAAP.IProvider.IsInstalled">
+            <summary>
+            Defines, wether a provider is installed
+            </summary>
+        </member>
+        <member name="P:Simplic.SAAP.IProvider.ProviderName">
+            <summary>
+            Name of the Provider
+            </summary>
+        </member>
+    </members>
+</doc>
