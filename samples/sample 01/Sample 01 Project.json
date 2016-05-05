@@ -1,0 +1,16 @@
+{
+	"assembly": "Sample01",
+	"rootNamespace": "Sample01",
+	"output": "../sample-bin/",
+	
+	"xaml":[
+		"Controls/CarEditor.xaml"
+	],
+		
+	"viewModels":[
+		"SampleVControls/CarViewModel.json"
+	],
+	
+	"ressources":[
+	]	
+}

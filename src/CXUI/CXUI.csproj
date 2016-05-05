@@ -33,6 +33,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Simplic.CommandShell">
+      <HintPath>..\..\dependencies\Simplic.CommandShell.dll</HintPath>
+    </Reference>
+    <Reference Include="Simplic.CoreLib">
+      <HintPath>..\..\dependencies\Simplic.CoreLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Simplic.Lexer">
+      <HintPath>..\..\dependencies\Simplic.Lexer.dll</HintPath>
+    </Reference>
+    <Reference Include="Simplic.Log">
+      <HintPath>..\..\dependencies\Simplic.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="Simplic.SAAP">
+      <HintPath>..\..\dependencies\Simplic.SAAP.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

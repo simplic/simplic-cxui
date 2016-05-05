@@ -1,0 +1,17 @@
+{
+	// Base model information
+	"model": "TestModel",
+	"namespace": "Testing",
+	
+	// List of properties
+	"properties": [{
+			"name": "FirstName",
+			"type": "String",
+			
+			// This are the default values
+			"notifyPropertyChanged": "true",
+			"setIsDirty": "true",
+			"setForceSave": "true",
+			"defaultValue": ""
+		}]
+}
