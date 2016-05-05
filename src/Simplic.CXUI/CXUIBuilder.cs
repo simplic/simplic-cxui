@@ -25,7 +25,6 @@ namespace Simplic.CXUI
     {
         #region Fields
         private string temporaryDirectory;
-        private IList<XamlSource> xamlSources;
         private IList<BuildTask.BuildTaskBase> tasks;
         private string assemblyName;
         #endregion
@@ -36,7 +35,6 @@ namespace Simplic.CXUI
         /// </summary>
         public CXUIBuilder()
         {
-            xamlSources = new List<XamlSource>();
             RootNamespace = "DynamicSXUI";
             temporaryDirectory = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Simplic.SXUI\\temp";
 
@@ -46,8 +44,6 @@ namespace Simplic.CXUI
             }
 
             tasks = new List<BuildTask.BuildTaskBase>();
-            tasks.Add(new BuildTask.CompileXamlPass1());
-            tasks.Add(new BuildTask.CompileAssembly());
 
             ContinueOnError = true;
         }
@@ -58,37 +54,7 @@ namespace Simplic.CXUI
         #endregion
 
         #region Public Methods
-
-        #region [Add Xaml Source]
-        /// <summary>
-        /// Add xaml source code
-        /// </summary>
-        /// <param name="xamlSource">Xaml source and configuration</param>
-        public void AddXamlSource(XamlSource xamlSource)
-        {
-            if (xamlSource == null)
-            {
-                throw new ArgumentNullException("xamlSource", "xamlSource must not be null.");
-            }
-
-            xamlSources.Add(xamlSource);
-        }
-
-        /// <summary>
-        /// Add xaml source from file
-        /// </summary>
-        /// <param name="path">Path to the file</param>
-        public void AddXamlSourceFromFile(string path)
-        {
-            if (string.IsNullOrWhiteSpace(path))
-            {
-                throw new ArgumentNullException("path", "Path must not be null or whitespace.");
-            }
-
-            xamlSources.Add(new XamlSource() { Name = Path.GetFileName(path), XamlCode = File.ReadAllText(path) });
-        }
-        #endregion
-
+        
         #region [Buid]
         /// <summary>
         /// Build the assembly for the SXUI system
@@ -287,22 +253,6 @@ namespace Simplic.CXUI
             get
             {
                 return "";
-            }
-        }
-
-        /// <summary>
-        /// List of XAML sources to compile
-        /// </summary>
-        public IList<XamlSource> XamlSources
-        {
-            get
-            {
-                return xamlSources;
-            }
-
-            set
-            {
-                xamlSources = value;
             }
         }
 

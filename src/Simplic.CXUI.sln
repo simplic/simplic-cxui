@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SXUI.Test", "SXUI.Test\SXUI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CXUI", "CXUI\CXUI.csproj", "{1DC59947-360F-46D9-A029-E7E964F172C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplic.CXUI.JsonViewModel", "Simplic.CXUI.JsonViewModel\Simplic.CXUI.JsonViewModel.csproj", "{76A0191D-D55B-475A-9C99-5DB0391AD4F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{AC10AC2A-CA3E-4DE3-A6AE-36BAB6071987}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplic.CXUI.IronPython", "Simplic.CXUI.IronPython\Simplic.CXUI.IronPython.csproj", "{BE99ABC0-C57A-4BAA-9EA3-338BFF47F20E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +33,20 @@ Global
 		{1DC59947-360F-46D9-A029-E7E964F172C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DC59947-360F-46D9-A029-E7E964F172C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DC59947-360F-46D9-A029-E7E964F172C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76A0191D-D55B-475A-9C99-5DB0391AD4F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76A0191D-D55B-475A-9C99-5DB0391AD4F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76A0191D-D55B-475A-9C99-5DB0391AD4F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76A0191D-D55B-475A-9C99-5DB0391AD4F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE99ABC0-C57A-4BAA-9EA3-338BFF47F20E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE99ABC0-C57A-4BAA-9EA3-338BFF47F20E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE99ABC0-C57A-4BAA-9EA3-338BFF47F20E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE99ABC0-C57A-4BAA-9EA3-338BFF47F20E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F861116D-ADB2-4688-A41A-59DC64EA055C} = {AC10AC2A-CA3E-4DE3-A6AE-36BAB6071987}
+		{1DC59947-360F-46D9-A029-E7E964F172C6} = {AC10AC2A-CA3E-4DE3-A6AE-36BAB6071987}
 	EndGlobalSection
 EndGlobal

@@ -12,9 +12,10 @@ namespace Simplic.CXUI.BuildTask
     /// <summary>
     /// Task for compiling xaml into baml and save in the temporary output directory
     /// </summary>
-    public class CompileXamlPass1 : BuildTaskBase
+    public class XamlBuildTaskPass1 : BuildTaskBase
     {
         #region Fields
+        private IList<XamlSource> xamlSources;
         private MarkupCompilePass1 _task;
         #endregion
 
@@ -22,13 +23,44 @@ namespace Simplic.CXUI.BuildTask
         /// <summary>
         /// Create xaml compiler pass 1
         /// </summary>
-        public CompileXamlPass1() : base()
+        public XamlBuildTaskPass1() : base()
         {
-            
+            xamlSources = new List<XamlSource>();
         }
         #endregion
-        
+
         #region Public Methods
+
+        #region [Add Xaml Source]
+        /// <summary>
+        /// Add xaml source code
+        /// </summary>
+        /// <param name="xamlSource">Xaml source and configuration</param>
+        public void AddXamlSource(XamlSource xamlSource)
+        {
+            if (xamlSource == null)
+            {
+                throw new ArgumentNullException("xamlSource", "xamlSource must not be null.");
+            }
+
+            xamlSources.Add(xamlSource);
+        }
+
+        /// <summary>
+        /// Add xaml source from file
+        /// </summary>
+        /// <param name="path">Path to the file</param>
+        public void AddXamlSourceFromFile(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                throw new ArgumentNullException("path", "Path must not be null or whitespace.");
+            }
+
+            xamlSources.Add(new XamlSource() { Name = Path.GetFileName(path), XamlCode = File.ReadAllText(path) });
+        }
+        #endregion
+
         /// <summary>
         /// Execute baml creation/compilation
         /// </summary>
@@ -43,7 +75,7 @@ namespace Simplic.CXUI.BuildTask
 
             // Write XAML-Source code to the filesystem, if it is not existing yet.
             // If it exists, just override it.
-            foreach (var _xaml in CXUIBuildEngine.XamlSources)
+            foreach (var _xaml in xamlSources)
             {
                 string path = String.Format("{0}{1}.xaml", InputDirectory, _xaml.Name);
                 File.WriteAllText(path, _xaml.XamlCode);
@@ -70,6 +102,24 @@ namespace Simplic.CXUI.BuildTask
             }
 
             return _task.Execute();
+        }
+        #endregion
+
+        #region Public Member
+        /// <summary>
+        /// List of XAML sources to compile
+        /// </summary>
+        public IList<XamlSource> XamlSources
+        {
+            get
+            {
+                return xamlSources;
+            }
+
+            set
+            {
+                xamlSources = value;
+            }
         }
         #endregion
     }

@@ -45,7 +45,7 @@ namespace SXUI.Test
                 contentGrid.Children.Clear();
 
                 CXUIBuilder builder = new CXUIBuilder();
-                builder.AddXamlSource(new XamlSource() { Name = "TestUserControl", XamlCode = codeTextBox.Text });
+                //builder.AddXamlSource(new XamlSource() { Name = "TestUserControl", XamlCode = codeTextBox.Text });
                 builder.RootNamespace = "Testing";
 
                 // Set references

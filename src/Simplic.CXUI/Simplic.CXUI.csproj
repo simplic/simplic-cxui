@@ -72,7 +72,7 @@
     <Compile Include="BuildTask\ViewModel\MetaBaseViewModel.cs" />
     <Compile Include="BuildTask\ViewModel\MetaViewModel.cs" />
     <Compile Include="BuildTask\ViewModel\MetaViewModelProperty.cs" />
-    <Compile Include="BuildTask\Xaml\CompileXamlPass1.cs" />
+    <Compile Include="BuildTask\Xaml\XamlBuildTaskPass1.cs" />
     <Compile Include="BuildTask\ViewModel\GenerateViewModel.cs" />
     <Compile Include="CXUIBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
