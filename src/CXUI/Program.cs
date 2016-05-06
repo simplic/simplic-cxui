@@ -174,7 +174,7 @@ namespace CXUI
             builder.Tasks.Add(xamlTask);
 
             // Add assembly build task
-            builder.Tasks.Add(new CompileAssembly());
+            builder.Tasks.Add(new BuildAssemblyTask());
 
             builder.Build();
 

@@ -68,12 +68,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildTask\BuildTaskBase.cs" />
-    <Compile Include="BuildTask\CSharp\CompileAssembly.cs" />
+    <Compile Include="BuildTask\CSharp\BuildAssemblyTask.cs" />
     <Compile Include="BuildTask\ViewModel\MetaBaseViewModel.cs" />
     <Compile Include="BuildTask\ViewModel\MetaViewModel.cs" />
     <Compile Include="BuildTask\ViewModel\MetaViewModelProperty.cs" />
     <Compile Include="BuildTask\Xaml\XamlBuildTaskPass1.cs" />
-    <Compile Include="BuildTask\ViewModel\GenerateViewModel.cs" />
+    <Compile Include="BuildTask\ViewModel\BuildViewModelTask.cs" />
     <Compile Include="CXUIBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BuildTask\Xaml\XamlItem.cs" />

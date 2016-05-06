@@ -56,6 +56,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,6 +76,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Simplic.CXUI.JsonViewModel\Simplic.CXUI.JsonViewModel.csproj">
+      <Project>{76a0191d-d55b-475a-9c99-5db0391ad4f4}</Project>
+      <Name>Simplic.CXUI.JsonViewModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Simplic.CXUI\Simplic.CXUI.csproj">
       <Project>{624ccc63-e7dd-4ac7-9fd1-81701004343c}</Project>
       <Name>Simplic.CXUI</Name>

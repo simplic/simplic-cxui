@@ -13,7 +13,7 @@ namespace Simplic.CXUI.BuildTask
     /// <summary>
     /// Generates the viewmodels for the generated and compiled xaml files
     /// </summary>
-    public abstract class GenerateViewModel : BuildTaskBase
+    public abstract class BuildViewModelTask : BuildTaskBase
     {
         #region Fields
         private IList<MetaViewModel> viewModels;
@@ -24,15 +24,22 @@ namespace Simplic.CXUI.BuildTask
         /// <summary>
         /// Create generator
         /// </summary>
-        public GenerateViewModel() : base()
+        public BuildViewModelTask() : base()
         {
             // Default values
             defaultBaseViewModel = new MetaBaseViewModel();
             viewModels = new List<MetaViewModel>();
         }
         #endregion
-        
+
         #region Public Methods
+        /// <summary>
+        /// Generate a metaviewmodel by passing it's code
+        /// </summary>
+        /// <param name="code">Code of the meta viewmodel in the specific language (json, c#, python, ...)</param>
+        /// <returns>Throws an exception or returns the viewmodel meta information</returns>
+        public abstract MetaViewModel GenerateMetaViewModel(string code);
+
         /// <summary>
         /// Generate viewmodel and save in output directory
         /// </summary>

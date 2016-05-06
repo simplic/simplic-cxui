@@ -20,7 +20,7 @@ namespace Simplic.CXUI.BuildTask
     /// <summary>
     /// Compile final assembly using Roslyn
     /// </summary>
-    public class CompileAssembly : BuildTaskBase
+    public class BuildAssemblyTask : BuildTaskBase
     {
         #region Fields
 
@@ -30,7 +30,7 @@ namespace Simplic.CXUI.BuildTask
         /// <summary>
         /// Create assembly compiler
         /// </summary>
-        public CompileAssembly() : base()
+        public BuildAssemblyTask() : base()
         {
 
         }

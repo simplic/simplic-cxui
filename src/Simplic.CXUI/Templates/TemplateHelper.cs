@@ -15,7 +15,12 @@ namespace Simplic.CXUI
         /// <summary>
         /// Path to the viewmodel template
         /// </summary>
-        public const string VIEWMODEL_TEMPLATE = "Simplic.CXUI.ViewModelTemplate.cstemplate";
+        public const string VIEWMODEL_TEMPLATE = "Simplic.CXUI.ViewModel.cstemplate";
+
+        /// <summary>
+        /// Proeprty template for viewmodels (getter/setter)
+        /// </summary>
+        public const string VIEWMODEL_PROPERTY_TEMPLATE = "Simplic.CXUI.ViewModelProperty.cstemplate";
 
         /// <summary>
         /// Get a filled template.
