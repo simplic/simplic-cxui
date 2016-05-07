@@ -77,7 +77,7 @@ namespace Simplic.CXUI.BuildTask
             // If it exists, just override it.
             foreach (var _xaml in xamlSources)
             {
-                string path = String.Format("{0}{1}.xaml", InputDirectory, _xaml.Name);
+                string path = String.Format("{0}{1}", InputDirectory, _xaml.Name);
                 File.WriteAllText(path, _xaml.XamlCode);
 
                 xamlItems.Add(new XamlItem(path));
