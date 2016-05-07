@@ -1,14 +1,14 @@
-﻿public {Type} {Name}
-{
-    get
-    {
-        return {Field};
-    }
-    set
-    {
-        {Field} = value;
-        {SetIsDirty}
-        {SetForceSave}
-        {RaisePropertyChanged}
-    }
-}
+﻿        public {Type} {Name}
+        {
+            get
+            {
+                return {Field};
+            }
+            set
+            {
+                {Field} = value;
+                {SetIsDirty}
+                {SetForceSave}
+                {RaisePropertyChanged}
+            }
+        }

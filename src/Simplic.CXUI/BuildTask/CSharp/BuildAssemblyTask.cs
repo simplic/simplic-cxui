@@ -37,6 +37,10 @@ namespace Simplic.CXUI.BuildTask
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Compile assembly
+        /// </summary>
+        /// <returns></returns>
         public override bool Execute()
         {
             // Create syntax trees
@@ -131,18 +135,47 @@ namespace Simplic.CXUI.BuildTask
                 }
                 else
                 {
+                    // Reset stream
                     ms.Seek(0, SeekOrigin.Begin);
+                    base.CXUIBuildEngine.RawAssembly = ms.ToArray();
 
-                    byte[] asm = ms.ToArray();
-                    File.WriteAllBytes(TempOutputDirectory + "_output.dll", asm);
+                    // Generate output
+                    if (WriteToFileSystem)
+                    {
+                        string _path = Path.Combine(OutputDirectory, CXUIBuildEngine.AssemblyName + ".dll");
+                        string _dir = Path.GetDirectoryName(_path);
 
-                    CXUIBuildEngine.GeneratedAssembly = Assembly.Load(asm);
+                        if (!Directory.Exists(_dir))
+                        {
+                            Directory.CreateDirectory(_dir);
+                        }
 
-                    CXUIBuildEngine.GeneratedTypes = CXUIBuildEngine.GeneratedAssembly.GetTypes();
+                        File.WriteAllBytes(_path, base.CXUIBuildEngine.RawAssembly);
+                    }
                 }
             }
 
             return true;
+        }
+        #endregion
+
+        #region Public Member
+        /// <summary>
+        /// If set to true, the assembly will be written to the filesystem
+        /// </summary>
+        public bool WriteToFileSystem
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// The directory for writing the assembly to
+        /// </summary>
+        public string OutputDirectory
+        {
+            get;
+            set;
         }
         #endregion
     }

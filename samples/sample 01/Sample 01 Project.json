@@ -1,16 +1,27 @@
 {
 	"assembly": "Sample01",
 	"rootNamespace": "Sample01",
-	"output": "../sample-bin/",
+	"output": "../../sample-bin/",
 	
+	// List of xaml source
 	"xaml":[
 		"Controls/CarEditor.xaml"
 	],
 		
+	// can be of type .json, .cs and .py
 	"viewModels":[
 		"Controls/CarViewModel.json"
 	],
 	
+	// A list of additional c# code files
+	"sources":[
+		
+	],
+	
 	"ressources":[
-	]	
+	],
+	
+	// A list of additional references
+	"references":[
+	]
 }

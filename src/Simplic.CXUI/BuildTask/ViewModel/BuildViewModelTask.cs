@@ -18,6 +18,7 @@ namespace Simplic.CXUI.BuildTask
         #region Fields
         private IList<MetaViewModel> viewModels;
         private MetaBaseViewModel defaultBaseViewModel;
+        private IList<string> viewModelFiles;
         #endregion
 
         #region Constructor
@@ -29,6 +30,7 @@ namespace Simplic.CXUI.BuildTask
             // Default values
             defaultBaseViewModel = new MetaBaseViewModel();
             viewModels = new List<MetaViewModel>();
+            viewModelFiles = new List<string>();
         }
         #endregion
 
@@ -46,8 +48,18 @@ namespace Simplic.CXUI.BuildTask
         /// <returns></returns>
         public override bool Execute()
         {
+            viewModels.Clear();
+
+            foreach (var file in viewModelFiles)
+            {
+                viewModels.Add(GenerateMetaViewModel(System.IO.File.ReadAllText(file)));
+            }
+
             foreach (var model in viewModels)
             {
+                string tempOutputPath = TempOutputDirectory + model.Name + ".cs";
+                Console.WriteLine("Generate: " + tempOutputPath);
+
                 // List of values which will be replaced in the file
                 var values = new Dictionary<string, string>();
 
@@ -60,67 +72,54 @@ namespace Simplic.CXUI.BuildTask
 
                 values.Add("Namespace", model.Namespace);
                 values.Add("ViewModelName", model.Name);
-                values.Add("ViewModelName", (string.IsNullOrWhiteSpace(model.Namespace) ? "" : model.Namespace + ".") + model.Name);
+                values.Add("BaseViewModel", (string.IsNullOrWhiteSpace(model.Namespace) ? "" : model.Namespace + ".") + model.Name);
 
                 // Generate fields and properties
                 foreach (var property in model.Properties)
                 {
                     // Field
-                    string field = property.Name.Trim();
-                    StringBuilder _tmp = new StringBuilder(field);
-                    _tmp[0] = field[0].ToString().ToLower().ToCharArray()[0];
-                    field = string.Format("private {0} {1};", property.Type, _tmp.ToString());
-                    fields.AppendLine(field);
+                    string field = string.Format("_{0}", property.Name.Trim());
+                    fields.AppendLine(TemplateHelper.GetTemplate(TemplateHelper.VIEWMODEL_FIELD_TEMPLATE, new Dictionary<string, string> { { "Type", property.Type }, {"Name", field} }));
 
-                    // Property
-                    // Create upper property case
-                    _tmp = new StringBuilder(field);
-                    _tmp[0] = field[0].ToString().ToUpper().ToCharArray()[0];
-                    string propertyName = _tmp.ToString();
 
-                    // Build property
-                    StringBuilder propertyCode = new StringBuilder();
-                    propertyCode.AppendLine(string.Format("public {0} {1}", property.Type, propertyName));
-                    propertyCode.AppendLine("{");
-                    propertyCode.AppendLine("\tget");
-                    propertyCode.AppendLine("\t{");
+                    Dictionary<string, string> propertyTemplateFields = new Dictionary<string, string>();
+                    propertyTemplateFields.Add("Field", field);
+                    propertyTemplateFields.Add("Name", property.Name);
+                    propertyTemplateFields.Add("Type", property.Type);
 
-                    propertyCode.AppendLine(string.Format("\t\treturn {0};", field));
-
-                    propertyCode.AppendLine("\t}");
-                    propertyCode.AppendLine("\tset");
-                    propertyCode.AppendLine("\t{");
-
-                    propertyCode.AppendLine(string.Format("\t\t{0} = value;", field));
+                    propertyTemplateFields.Add("SetIsDirty", "");
+                    propertyTemplateFields.Add("SetForceSave", "");
+                    propertyTemplateFields.Add("RaisePropertyChanged", "");
 
                     // Is dirty and force save
                     if (!string.IsNullOrWhiteSpace(baseViewModel.NameIsDirtyProperty) && property.SetIsDirty)
                     {
-                        propertyCode.AppendLine(string.Format("\t\t{0} = true;", baseViewModel.NameIsDirtyProperty));
+                        propertyTemplateFields["SetIsDirty"] = string.Format("{0} = true;", baseViewModel.NameIsDirtyProperty);
                     }
                     if (!string.IsNullOrWhiteSpace(baseViewModel.NameForceSaveProperty) && property.SetForceSave)
                     {
-                        propertyCode.AppendLine(string.Format("\t\t{0} = true;", baseViewModel.NameForceSaveProperty));
+                        propertyTemplateFields["SetForceSave"] = string.Format("{0} = true;", baseViewModel.NameForceSaveProperty);
                     }
 
                     // Raise property changed
                     if (!string.IsNullOrWhiteSpace(baseViewModel.NameForceSaveProperty) && property.SetForceSave)
                     {
-                        propertyCode.AppendLine(string.Format("\t\t{0}({1});", baseViewModel.RaisePropertyChangedMethod, propertyName));
+                        propertyTemplateFields["RaisePropertyChanged"] = string.Format("{0}(\"{1}\");", baseViewModel.RaisePropertyChangedMethod, property.Name);
                     }
 
-                    propertyCode.AppendLine("\t}");
-                    propertyCode.AppendLine("}");
-                    properties.AppendLine(propertyCode.ToString());
+                    properties.AppendLine(TemplateHelper.GetTemplate(TemplateHelper.VIEWMODEL_PROPERTY_TEMPLATE, propertyTemplateFields));
+                    properties.AppendLine();
                 }
 
                 // Set
-                values.Add("Fields", fields.ToString().Trim());
-                values.Add("ConstructorCode", constructor.ToString().Trim());
-                values.Add("Properties", properties.ToString().Trim());
+                values.Add("Fields", fields.ToString().TrimEnd());
+                values.Add("ConstructorCode", constructor.ToString().TrimEnd());
+                values.Add("Properties", properties.ToString().TrimEnd());
 
                 // Generate file
                 string template = TemplateHelper.GetTemplate(TemplateHelper.VIEWMODEL_TEMPLATE, values);
+                
+                System.IO.File.WriteAllText(tempOutputPath, template, Encoding.UTF8);
             }
 
             return base.Execute();
@@ -153,6 +152,17 @@ namespace Simplic.CXUI.BuildTask
             set
             {
                 defaultBaseViewModel = value;
+            }
+        }
+
+        /// <summary>
+        /// List of viewmodel files to compile
+        /// </summary>
+        public IList<string> ViewModelFiles
+        {
+            get
+            {
+                return viewModelFiles;
             }
         }
         #endregion

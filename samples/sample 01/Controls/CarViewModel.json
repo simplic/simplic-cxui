@@ -1,7 +1,10 @@
 {
 	// Base model information
-	"model": "TestModel",
-	"namespace": "Testing",
+	"fullQualifiedBaseViewModel": "Simplic.UI.ViewModelnase",
+
+	// General
+	"name": "CarViewModel",
+	"namespace": "sample01",
 	
 	// List of properties
 	"properties": [{
@@ -13,5 +16,14 @@
 			"setIsDirty": "true",
 			"setForceSave": "true",
 			"defaultValue": ""
+		},{
+			"name": "Age",
+			"type": "int",
+			
+			// This are the default values
+			"notifyPropertyChanged": "true",
+			"setIsDirty": "true",
+			"setForceSave": "true",
+			"defaultValue": "0"
 		}]
 }

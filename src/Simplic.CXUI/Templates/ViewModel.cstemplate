@@ -8,19 +8,19 @@ namespace {Namespace}
 {
     public class {ViewModelName} : {BaseViewModel}
     {
-		#region Fields
-		{Fields}
-		#endregion
+        #region Fields
+{Fields}
+        #endregion
 
-		#region Constructor
-		public {ViewModelName}()
-		{
-			{ConstructorCode}
-		}
-		#endregion
+        #region Constructor
+        public {ViewModelName}()
+        {
+        	{ConstructorCode}
+        }
+        #endregion
 
-		#region Public Member
-		{Properties}
-		#endregion
+        #region Public Member
+{Properties}
+        #endregion
     }
 }

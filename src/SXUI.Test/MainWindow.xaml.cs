@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -66,7 +67,9 @@ namespace SXUI.Test
 
                 Type generatedType = null;
 
-                foreach (var type in builder.GeneratedTypes)
+                Assembly asm = Assembly.Load(builder.RawAssembly);
+
+                foreach (var type in asm.GetTypes())
                 {
                     if (type.Namespace == "Testing" && type.Name == "TestUserControl")
                     {

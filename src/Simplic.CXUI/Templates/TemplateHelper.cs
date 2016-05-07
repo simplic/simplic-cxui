@@ -15,12 +15,17 @@ namespace Simplic.CXUI
         /// <summary>
         /// Path to the viewmodel template
         /// </summary>
-        public const string VIEWMODEL_TEMPLATE = "Simplic.CXUI.ViewModel.cstemplate";
+        public const string VIEWMODEL_TEMPLATE = "Simplic.CXUI.Templates.ViewModel.cstemplate";
 
         /// <summary>
         /// Proeprty template for viewmodels (getter/setter)
         /// </summary>
-        public const string VIEWMODEL_PROPERTY_TEMPLATE = "Simplic.CXUI.ViewModelProperty.cstemplate";
+        public const string VIEWMODEL_PROPERTY_TEMPLATE = "Simplic.CXUI.Templates.ViewModelProperty.cstemplate";
+
+        /// <summary>
+        /// Viewmodel field property
+        /// </summary>
+        public const string VIEWMODEL_FIELD_TEMPLATE = "Simplic.CXUI.Templates.ViewModelField.cstemplate";
 
         /// <summary>
         /// Get a filled template.
@@ -31,7 +36,7 @@ namespace Simplic.CXUI
         public static string GetTemplate(string name, IDictionary<string, string> values)
         {
             var assembly = typeof(TemplateHelper).Assembly;
-
+            
             using (Stream stream = assembly.GetManifestResourceStream(name))
             {
                 using (StreamReader reader = new StreamReader(stream))
@@ -42,6 +47,8 @@ namespace Simplic.CXUI
                     {
                         result = result.Replace("{" + val.Key + "}", val.Value);
                     }
+
+                    return result;
                 }
             }
 

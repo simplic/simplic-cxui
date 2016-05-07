@@ -63,7 +63,11 @@ namespace Simplic.CXUI
         public Stream Build()
         {
             Stream assembly = null;
-            assemblyName = "CXUI" + Guid.NewGuid().ToString().Replace("-", "_");
+
+            if (string.IsNullOrWhiteSpace(assemblyName))
+            {
+                assemblyName = "CXUI" + Guid.NewGuid().ToString().Replace("-", "_");
+            }
 
             string inputPath = temporaryDirectory + "\\input\\";
             string outputPath = temporaryDirectory + "\\output\\";
@@ -199,18 +203,9 @@ namespace Simplic.CXUI
         }
 
         /// <summary>
-        /// Get a list of generated types
+        /// Contains the assembly which is generated in this pipeline
         /// </summary>
-        public IList<Type> GeneratedTypes
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// Get the created assembly
-        /// </summary>
-        public Assembly GeneratedAssembly
+        public byte[] RawAssembly
         {
             get;
             internal set;

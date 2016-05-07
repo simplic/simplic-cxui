@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Simplic.CommandShell;
 using Simplic.CXUI;
 using Simplic.CXUI.BuildTask;
+using Simplic.CXUI.JsonViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -95,7 +96,10 @@ namespace CXUI
             #endregion
 
             #region [Prepare Project]
-            configuration.Output = string.Format("{0}{1}", Path.GetFullPath(Path.GetDirectoryName(configuration.Output)), "\\");
+            if (!Path.IsPathRooted(configuration.Output))
+            {
+                configuration.Output = Path.GetFullPath(Path.Combine(projectDirectory, configuration.Output));
+            }
 
             if (string.IsNullOrWhiteSpace(configuration.Assembly))
             {
@@ -161,6 +165,21 @@ namespace CXUI
             builder.AssemblyName = configuration.Assembly;
             builder.RootNamespace = configuration.RootNamespace;
 
+            // Set the minimum of required assemblies
+            // Set references
+            builder.References = new[]
+            {
+                typeof(object).Assembly,
+                typeof(Enumerable).Assembly,
+                typeof(Uri).Assembly,
+                typeof(System.Xml.XmlAttribute).Assembly,
+                typeof(System.Xaml.XamlLanguage).Assembly,
+                typeof(System.Windows.Point).Assembly,
+                typeof(System.Windows.Application).Assembly,
+                typeof(System.Windows.Ink.ApplicationGesture).Assembly,
+                typeof(System.Xaml.XamlSchemaContext).Assembly
+            };
+
             // Create xaml building task
             var xamlTask = new XamlBuildTaskPass1();
 
@@ -173,8 +192,20 @@ namespace CXUI
             // Add xaml task
             builder.Tasks.Add(xamlTask);
 
+            // Compile View-Models
+            var jsonViewModelTask = new JsonViewModelBuildTask();
+            foreach (var file in configuration.ViewModels)
+            {
+                string path = Path.Combine(projectDirectory, file);
+                jsonViewModelTask.ViewModelFiles.Add(path);
+            }
+            builder.Tasks.Add(jsonViewModelTask);
+
             // Add assembly build task
-            builder.Tasks.Add(new BuildAssemblyTask());
+            var compileTask = new BuildAssemblyTask();
+            compileTask.OutputDirectory = configuration.Output;
+            compileTask.WriteToFileSystem = true;
+            builder.Tasks.Add(compileTask);
 
             builder.Build();
 

@@ -79,10 +79,12 @@
     <Compile Include="BuildTask\Xaml\XamlItem.cs" />
     <Compile Include="BuildTask\Xaml\XamlSource.cs" />
     <Compile Include="Templates\TemplateHelper.cs" />
+    <EmbeddedResource Include="Templates\ViewModelField.cstemplate" />
+    <EmbeddedResource Include="Templates\ViewModelProperty.cstemplate" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <EmbeddedResource Include="Templates\ViewModelTemplate.cstemplate" />
+    <EmbeddedResource Include="Templates\ViewModel.cstemplate" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
