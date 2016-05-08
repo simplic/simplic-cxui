@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="BuildTask\BuildTaskBase.cs" />
     <Compile Include="BuildTask\CSharp\BuildAssemblyTask.cs" />
+    <Compile Include="BuildTask\GeneratedFile.cs" />
     <Compile Include="BuildTask\ViewModel\MetaBaseViewModel.cs" />
     <Compile Include="BuildTask\ViewModel\MetaViewModel.cs" />
     <Compile Include="BuildTask\ViewModel\MetaViewModelProperty.cs" />

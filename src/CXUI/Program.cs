@@ -204,8 +204,10 @@ namespace CXUI
 
             // Add assembly build task
             var compileTask = new BuildAssemblyTask();
+            
             compileTask.OutputDirectory = configuration.Output;
             compileTask.WriteToFileSystem = true;
+
             builder.Tasks.Add(compileTask);
 
             builder.Build();

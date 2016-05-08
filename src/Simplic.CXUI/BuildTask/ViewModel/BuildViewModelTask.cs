@@ -126,6 +126,8 @@ namespace Simplic.CXUI.BuildTask
                 string template = TemplateHelper.GetTemplate(TemplateHelper.VIEWMODEL_TEMPLATE, values);
                 
                 System.IO.File.WriteAllText(tempOutputPath, template, Encoding.UTF8);
+
+                CXUIBuildEngine.GeneratedFiles.Add(new GeneratedFile(tempOutputPath));
             }
 
             return base.Execute();

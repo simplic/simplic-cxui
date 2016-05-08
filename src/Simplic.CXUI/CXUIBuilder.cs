@@ -61,6 +61,7 @@ namespace Simplic.CXUI
         public Stream Build()
         {
             Stream assembly = null;
+            GeneratedFiles = new List<GeneratedFile>();
 
             if (string.IsNullOrWhiteSpace(assemblyName))
             {
@@ -90,6 +91,23 @@ namespace Simplic.CXUI
                 if (!task.Execute() && ContinueOnError == false)
                 {
                     break;
+                }
+
+                // Resolve paths
+                foreach (var file in GeneratedFiles)
+                {
+                    if (string.IsNullOrWhiteSpace(file.RelativeDirectoryPath))
+                    {
+                        string abs = Path.GetDirectoryName(file.AbsoluteDirectoryPath + "\\");
+                        string root = Path.GetDirectoryName(outputPath + "\\");
+
+                        file.RelativeDirectoryPath = Path.GetDirectoryName(abs.Replace(root, "") + "\\") ?? "";
+                    }
+
+                    if (string.IsNullOrWhiteSpace(file.AbsolutePath))
+                    {
+                        file.AbsolutePath = Path.Combine(file.AbsoluteDirectoryPath, file.Name + file.Extension);
+                    }
                 }
             }
 
@@ -261,6 +279,15 @@ namespace Simplic.CXUI
             {
                 return tasks;
             }
+        }
+
+        /// <summary>
+        /// Contains a list of generated files, which will be passed between build steps
+        /// </summary>
+        public IList<GeneratedFile> GeneratedFiles
+        {
+            get;
+            private set;
         }
         #endregion
 

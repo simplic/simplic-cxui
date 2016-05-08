@@ -46,20 +46,15 @@ namespace Simplic.CXUI.BuildTask
             // Create syntax trees
             IList<SyntaxTree> syntaxTrees = new List<SyntaxTree>();
 
-            // Load generated xaml-cs and code-behind files
-            /*foreach (string file in Directory.GetFiles(TempOutputDirectory).Where(item => item.EndsWith(".g.cs")))
+            foreach (var file in sources)
             {
                 var _st = CSharpSyntaxTree.ParseText(File.ReadAllText(file));
                 syntaxTrees.Add(_st);
             }
-            foreach (string file in Directory.GetFiles(InputDirectory).Where(item => item.EndsWith(".xaml.cs")))
+
+            foreach (var gen in CXUIBuildEngine.GeneratedFiles.Where(item => item.Extension == ".cs"))
             {
-                var _st = CSharpSyntaxTree.ParseText(File.ReadAllText(file));
-                syntaxTrees.Add(_st);
-            }*/
-            foreach (var file in sources)
-            {
-                var _st = CSharpSyntaxTree.ParseText(File.ReadAllText(file));
+                var _st = CSharpSyntaxTree.ParseText(File.ReadAllText(gen.AbsolutePath));
                 syntaxTrees.Add(_st);
             }
 

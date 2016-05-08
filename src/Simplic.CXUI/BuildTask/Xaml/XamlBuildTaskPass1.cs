@@ -88,6 +88,9 @@ namespace Simplic.CXUI.BuildTask
                 {
                     return false;
                 }
+
+                string generatedPath = Path.Combine(TempOutputDirectory, _xaml.RelativePath, Path.GetFileNameWithoutExtension(_xaml.Name) + ".g.cs");
+                CXUIBuildEngine.GeneratedFiles.Add(new GeneratedFile(generatedPath));
             }
 
             return true;
