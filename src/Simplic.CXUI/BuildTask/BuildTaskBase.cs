@@ -51,15 +51,6 @@ namespace Simplic.CXUI.BuildTask
         }
 
         /// <summary>
-        /// Input directory
-        /// </summary>
-        public virtual string InputDirectory
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// Temporary output directory
         /// </summary>
         public virtual string TempOutputDirectory

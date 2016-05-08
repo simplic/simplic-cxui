@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections;
 using Simplic.CXUI.BuildTask.ViewModel;
+using System.IO;
 
 namespace Simplic.CXUI.BuildTask
 {
@@ -52,12 +53,17 @@ namespace Simplic.CXUI.BuildTask
 
             foreach (var file in viewModelFiles)
             {
-                viewModels.Add(GenerateMetaViewModel(System.IO.File.ReadAllText(file)));
+                var model = GenerateMetaViewModel(System.IO.File.ReadAllText(file));
+
+                model.__AbsolutePath__ = Path.GetDirectoryName(file);
+                model.__RelativePath__ = Path.GetDirectoryName(model.__AbsolutePath__.Replace(CXUIBuildEngine.ProjectRoot, "") + "\\");
+
+                viewModels.Add(model);
             }
 
             foreach (var model in viewModels)
             {
-                string tempOutputPath = TempOutputDirectory + model.Name + ".cs";
+                string tempOutputPath = Path.Combine(TempOutputDirectory, model.__RelativePath__, model.Name + ".cs");
                 Console.WriteLine("Generate: " + tempOutputPath);
 
                 // List of values which will be replaced in the file

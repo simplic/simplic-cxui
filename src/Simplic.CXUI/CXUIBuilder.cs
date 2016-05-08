@@ -24,7 +24,6 @@ namespace Simplic.CXUI
     public class CXUIBuilder : IBuildEngine
     {
         #region Fields
-        private string temporaryDirectory;
         private IList<BuildTask.BuildTaskBase> tasks;
         private string assemblyName;
         #endregion
@@ -36,7 +35,6 @@ namespace Simplic.CXUI
         public CXUIBuilder()
         {
             RootNamespace = "DynamicSXUI";
-            temporaryDirectory = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Simplic.SXUI\\temp";
 
             foreach (var asm in this.GetType().Assembly.GetReferencedAssemblies())
             {
@@ -68,15 +66,10 @@ namespace Simplic.CXUI
             {
                 assemblyName = "CXUI" + Guid.NewGuid().ToString().Replace("-", "_");
             }
+            
+            string outputPath = ProjectRoot + "\\obj\\";
 
-            string inputPath = temporaryDirectory + "\\input\\";
-            string outputPath = temporaryDirectory + "\\output\\";
-
-            // Create temp directory
-            if (!Directory.Exists(inputPath))
-            {
-                Directory.CreateDirectory(inputPath);
-            }
+            // Remove and reate temp directory
             if (!Directory.Exists(outputPath))
             {
                 Directory.CreateDirectory(outputPath);
@@ -93,7 +86,6 @@ namespace Simplic.CXUI
 
                 task.BuildEngine = this;
                 task.TempOutputDirectory = outputPath;
-                task.InputDirectory = inputPath;
 
                 if (!task.Execute() && ContinueOnError == false)
                 {
@@ -187,19 +179,12 @@ namespace Simplic.CXUI
         }
 
         /// <summary>
-        /// Directory which will be used for temporary files during the building process
+        /// Root path of the project
         /// </summary>
-        public string TemporaryDirectory
+        public string ProjectRoot
         {
-            get
-            {
-                return temporaryDirectory;
-            }
-
-            set
-            {
-                temporaryDirectory = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

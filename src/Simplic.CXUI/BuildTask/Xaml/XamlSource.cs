@@ -21,9 +21,27 @@ namespace Simplic.CXUI
         }
 
         /// <summary>
+        /// Path to the source file
+        /// </summary>
+        public string Path
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Xaml source code
         /// </summary>
         public string XamlCode
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Relative path to the source file, without source name
+        /// </summary>
+        internal string RelativePath
         {
             get;
             set;

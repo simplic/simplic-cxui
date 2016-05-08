@@ -54,5 +54,23 @@ namespace Simplic.CXUI.BuildTask.ViewModel
             get;
             set;
         }
+
+        /// <summary>
+        /// Absolte path to the generation base (.json, .py, ...)
+        /// </summary>
+        internal string __AbsolutePath__
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Relative path to the generation base (.json, .py, ...)
+        /// </summary>
+        internal string __RelativePath__
+        {
+            get;
+            set;
+        }
     }
 }

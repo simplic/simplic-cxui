@@ -33,20 +33,6 @@ namespace Simplic.CXUI.BuildTask
 
         #region [Add Xaml Source]
         /// <summary>
-        /// Add xaml source code
-        /// </summary>
-        /// <param name="xamlSource">Xaml source and configuration</param>
-        public void AddXamlSource(XamlSource xamlSource)
-        {
-            if (xamlSource == null)
-            {
-                throw new ArgumentNullException("xamlSource", "xamlSource must not be null.");
-            }
-
-            xamlSources.Add(xamlSource);
-        }
-
-        /// <summary>
         /// Add xaml source from file
         /// </summary>
         /// <param name="path">Path to the file</param>
@@ -57,7 +43,7 @@ namespace Simplic.CXUI.BuildTask
                 throw new ArgumentNullException("path", "Path must not be null or whitespace.");
             }
 
-            xamlSources.Add(new XamlSource() { Name = Path.GetFileName(path), XamlCode = File.ReadAllText(path) });
+            xamlSources.Add(new XamlSource() { Path = Path.GetFullPath(path), Name = Path.GetFileName(path), XamlCode = File.ReadAllText(path) });
         }
         #endregion
 
@@ -67,41 +53,44 @@ namespace Simplic.CXUI.BuildTask
         /// <returns>Bool if compiling was successfull</returns>
         public override bool Execute()
         {
-            _task = new MarkupCompilePass1();
-            _task.BuildEngine = BuildEngine;
-            _task.RequirePass2ForMainAssembly = false;
-
-            IList<XamlItem> xamlItems = new List<XamlItem>();
-
-            // Write XAML-Source code to the filesystem, if it is not existing yet.
-            // If it exists, just override it.
+            // Compile every xaml files
             foreach (var _xaml in xamlSources)
             {
-                string path = String.Format("{0}{1}", InputDirectory, _xaml.Name);
-                File.WriteAllText(path, _xaml.XamlCode);
+                _xaml.RelativePath = _xaml.RelativePath = Path.GetDirectoryName(_xaml.Path.Replace(CXUIBuildEngine.ProjectRoot, ""));
 
-                xamlItems.Add(new XamlItem(path));
+                _task = new MarkupCompilePass1();
+                _task.BuildEngine = BuildEngine;
+                _task.RequirePass2ForMainAssembly = false;
+
+                // List of xaml to compile, im this case just one,
+                // because only one output is allowed so we have to set
+                // the specific output per compile process...
+                _task.PageMarkup = new[] { new XamlItem(_xaml.Path) };
+
+                // Set default namespace
+                if (!string.IsNullOrWhiteSpace(CXUIBuildEngine.RootNamespace))
+                {
+                    _task.RootNamespace = CXUIBuildEngine.RootNamespace;
+                }
+
+                // Set default options
+                _task.AssemblyName = CXUIBuildEngine.AssemblyName;
+                _task.Language = "cs";
+                _task.OutputPath = Path.Combine(TempOutputDirectory, _xaml.RelativePath);
+
+                // Add all references as XamlItem
+                if (CXUIBuildEngine.References != null)
+                {
+                    _task.References = CXUIBuildEngine.References.Select(item => new XamlItem(item.Location)).ToArray();
+                }
+
+                if (!_task.Execute())
+                {
+                    return false;
+                }
             }
-            _task.PageMarkup = xamlItems.ToArray();
 
-            // Set default namespace
-            if (!string.IsNullOrWhiteSpace(CXUIBuildEngine.RootNamespace))
-            {
-                _task.RootNamespace = CXUIBuildEngine.RootNamespace;
-            }
-
-            // Set default options
-            _task.AssemblyName = CXUIBuildEngine.AssemblyName;
-            _task.Language = "cs";
-            _task.OutputPath = TempOutputDirectory;
-
-            // Add all references as XamlItem
-            if (CXUIBuildEngine.References != null)
-            {
-                _task.References = CXUIBuildEngine.References.Select(item => new XamlItem(item.Location)).ToArray();
-            }
-
-            return _task.Execute();
+            return true;
         }
         #endregion
 

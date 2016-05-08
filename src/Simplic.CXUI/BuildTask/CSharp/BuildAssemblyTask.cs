@@ -23,7 +23,7 @@ namespace Simplic.CXUI.BuildTask
     public class BuildAssemblyTask : BuildTaskBase
     {
         #region Fields
-
+        private IList<string> sources;
         #endregion
 
         #region Constructor
@@ -32,7 +32,7 @@ namespace Simplic.CXUI.BuildTask
         /// </summary>
         public BuildAssemblyTask() : base()
         {
-
+            sources = new List<string>();
         }
         #endregion
 
@@ -47,12 +47,17 @@ namespace Simplic.CXUI.BuildTask
             IList<SyntaxTree> syntaxTrees = new List<SyntaxTree>();
 
             // Load generated xaml-cs and code-behind files
-            foreach (string file in Directory.GetFiles(TempOutputDirectory).Where(item => item.EndsWith(".g.cs")))
+            /*foreach (string file in Directory.GetFiles(TempOutputDirectory).Where(item => item.EndsWith(".g.cs")))
             {
                 var _st = CSharpSyntaxTree.ParseText(File.ReadAllText(file));
                 syntaxTrees.Add(_st);
             }
             foreach (string file in Directory.GetFiles(InputDirectory).Where(item => item.EndsWith(".xaml.cs")))
+            {
+                var _st = CSharpSyntaxTree.ParseText(File.ReadAllText(file));
+                syntaxTrees.Add(_st);
+            }*/
+            foreach (var file in sources)
             {
                 var _st = CSharpSyntaxTree.ParseText(File.ReadAllText(file));
                 syntaxTrees.Add(_st);
@@ -176,6 +181,17 @@ namespace Simplic.CXUI.BuildTask
         {
             get;
             set;
+        }
+
+        /// <summary>
+        /// List of sources which should be compiled
+        /// </summary>
+        public IList<string> Sources
+        {
+            get
+            {
+                return sources;
+            }
         }
         #endregion
     }

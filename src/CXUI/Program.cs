@@ -164,6 +164,7 @@ namespace CXUI
             CXUIBuilder builder = new CXUIBuilder();
             builder.AssemblyName = configuration.Assembly;
             builder.RootNamespace = configuration.RootNamespace;
+            builder.ProjectRoot = projectDirectory;
 
             // Set the minimum of required assemblies
             // Set references

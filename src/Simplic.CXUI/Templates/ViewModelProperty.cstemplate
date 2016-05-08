@@ -2,13 +2,19 @@
         {
             get
             {
-                return {Field};
+                return ({Type})this.GetProperty("{Name}", {Field});
             }
             set
             {
-                {Field} = value;
-                {SetIsDirty}
-                {SetForceSave}
-                {RaisePropertyChanged}
+                if(this.PropertyChanging("{Name}", {Field}, value))
+                {
+                    var oldValue = {Field};
+                    {Field} = value;
+                    {SetIsDirty}
+                    {SetForceSave}
+                    {RaisePropertyChanged}
+
+                    this.PropertyChanged("{Name}", {Field}, oldValue);
+                }
             }
         }
