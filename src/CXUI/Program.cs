@@ -202,7 +202,14 @@ namespace CXUI
             }
             builder.Tasks.Add(jsonViewModelTask);
 
+            if (configuration.UseAutogenerateViewModelBase)
+            {
+                // Add viewmodel task
+                builder.Tasks.Add(new BuildViewModelBaseTask());
+            }
+
             // Add assembly build task
+
             var compileTask = new BuildAssemblyTask();
             
             compileTask.OutputDirectory = configuration.Output;

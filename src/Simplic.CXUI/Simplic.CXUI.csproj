@@ -70,6 +70,7 @@
     <Compile Include="BuildTask\BuildTaskBase.cs" />
     <Compile Include="BuildTask\CSharp\BuildAssemblyTask.cs" />
     <Compile Include="BuildTask\GeneratedFile.cs" />
+    <Compile Include="BuildTask\ViewModel\BuildViewModelBaseTask.cs" />
     <Compile Include="BuildTask\ViewModel\MetaBaseViewModel.cs" />
     <Compile Include="BuildTask\ViewModel\MetaViewModel.cs" />
     <Compile Include="BuildTask\ViewModel\MetaViewModelProperty.cs" />
@@ -86,6 +87,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <EmbeddedResource Include="Templates\ViewModel.cstemplate" />
+    <EmbeddedResource Include="Templates\ViewModelBase.cstemplate" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

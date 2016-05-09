@@ -20,6 +20,15 @@ namespace Simplic.CXUI.BuildTask.ViewModel
         }
 
         /// <summary>
+        /// Full qualified base view model namespace
+        /// </summary>
+        public string FullQualifiedBaseViewModel
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Name of the model/class
         /// </summary>
         public string Name

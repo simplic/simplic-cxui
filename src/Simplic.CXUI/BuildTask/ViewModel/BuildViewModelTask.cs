@@ -78,14 +78,14 @@ namespace Simplic.CXUI.BuildTask
 
                 values.Add("Namespace", model.Namespace);
                 values.Add("ViewModelName", model.Name);
-                values.Add("BaseViewModel", (string.IsNullOrWhiteSpace(model.Namespace) ? "" : model.Namespace + ".") + model.Name);
+                values.Add("BaseViewModel", model.FullQualifiedBaseViewModel);
 
                 // Generate fields and properties
                 foreach (var property in model.Properties)
                 {
                     // Field
                     string field = string.Format("_{0}", property.Name.Trim());
-                    fields.AppendLine(TemplateHelper.GetTemplate(TemplateHelper.VIEWMODEL_FIELD_TEMPLATE, new Dictionary<string, string> { { "Type", property.Type }, {"Name", field} }));
+                    fields.AppendLine(TemplateHelper.GetTemplate(TemplateHelper.VIEWMODEL_FIELD_TEMPLATE, new Dictionary<string, string> { { "Type", property.Type }, { "Name", field } }));
 
 
                     Dictionary<string, string> propertyTemplateFields = new Dictionary<string, string>();
@@ -124,7 +124,12 @@ namespace Simplic.CXUI.BuildTask
 
                 // Generate file
                 string template = TemplateHelper.GetTemplate(TemplateHelper.VIEWMODEL_TEMPLATE, values);
-                
+
+                if (!Directory.Exists(Path.GetDirectoryName(tempOutputPath)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(tempOutputPath));
+                }
+
                 System.IO.File.WriteAllText(tempOutputPath, template, Encoding.UTF8);
 
                 CXUIBuildEngine.GeneratedFiles.Add(new GeneratedFile(tempOutputPath));

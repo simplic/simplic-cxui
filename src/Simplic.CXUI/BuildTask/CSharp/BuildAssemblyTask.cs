@@ -52,8 +52,10 @@ namespace Simplic.CXUI.BuildTask
                 syntaxTrees.Add(_st);
             }
 
+            Console.WriteLine("Add sources to compile");
             foreach (var gen in CXUIBuildEngine.GeneratedFiles.Where(item => item.Extension == ".cs"))
             {
+                Console.WriteLine(gen.AbsolutePath);
                 var _st = CSharpSyntaxTree.ParseText(File.ReadAllText(gen.AbsolutePath));
                 syntaxTrees.Add(_st);
             }
@@ -84,11 +86,18 @@ namespace Simplic.CXUI.BuildTask
                 string resourcePath = string.Format("{0}{1}.g.resources", TempOutputDirectory, CXUIBuildEngine.RootNamespace);
                 ResourceWriter rsWriter = new ResourceWriter(resourcePath);
 
-                foreach (string file in Directory.GetFiles(TempOutputDirectory).Where(item => item.EndsWith(".baml")))
+                foreach (var generatedFile in CXUIBuildEngine.GeneratedFiles.Where(item => item.Extension == ".baml"))
                 {
-                    var fileName = Path.GetFileName(file.ToLower());
-                    var data = File.OpenRead(file);
-                    rsWriter.AddResource(fileName, data, true);
+                    var fileName = string.Format("{0}{1}{2}{3}", generatedFile.RelativeDirectoryPath, "\\", generatedFile.Name, generatedFile.Extension);
+                    fileName = fileName.ToLower();
+
+                    if (fileName.StartsWith("\\"))
+                    {
+                        fileName = fileName.Substring(1, fileName.Length - 1);
+                    }
+
+                    var data = File.OpenRead(generatedFile.AbsolutePath);
+                    rsWriter.AddResource(fileName.Replace("\\", "/"), data, true);
                 }
 
                 rsWriter.Generate();

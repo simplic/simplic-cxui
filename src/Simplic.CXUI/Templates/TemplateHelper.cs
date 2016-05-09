@@ -28,6 +28,11 @@ namespace Simplic.CXUI
         public const string VIEWMODEL_FIELD_TEMPLATE = "Simplic.CXUI.Templates.ViewModelField.cstemplate";
 
         /// <summary>
+        /// Viewmodel base which will be currently compiled into any assembly
+        /// </summary>
+        public const string VIEWMODEL_BASE_TEMPLATE = "Simplic.CXUI.Templates.ViewModelBase.cstemplate";
+
+        /// <summary>
         /// Get a filled template.
         /// </summary>
         /// <param name="name">Name of the template (use the constant strings to access them)</param>

@@ -61,11 +61,15 @@ namespace Simplic.CXUI.BuildTask
                 _task = new MarkupCompilePass1();
                 _task.BuildEngine = BuildEngine;
                 _task.RequirePass2ForMainAssembly = false;
+                _task.OutputType = "library";
 
                 // List of xaml to compile, im this case just one,
                 // because only one output is allowed so we have to set
                 // the specific output per compile process...
-                _task.PageMarkup = new[] { new XamlItem(_xaml.Path) };
+                var _item = new XamlItem(_xaml.Path);
+                _item.SetMetadata("Link", _xaml.RelativePath + "\\" + Path.GetFileName(_xaml.Path));
+                _item.SetMetadata("LogicalName", _xaml.RelativePath + "\\" + Path.GetFileName(_xaml.Path));
+                _task.PageMarkup = new[] { _item };
 
                 // Set default namespace
                 if (!string.IsNullOrWhiteSpace(CXUIBuildEngine.RootNamespace))
@@ -75,9 +79,9 @@ namespace Simplic.CXUI.BuildTask
 
                 // Set default options
                 _task.AssemblyName = CXUIBuildEngine.AssemblyName;
-                _task.Language = "cs";
+                _task.Language = "C#";
                 _task.OutputPath = Path.Combine(TempOutputDirectory, _xaml.RelativePath);
-
+                
                 // Add all references as XamlItem
                 if (CXUIBuildEngine.References != null)
                 {
@@ -90,7 +94,19 @@ namespace Simplic.CXUI.BuildTask
                 }
 
                 string generatedPath = Path.Combine(TempOutputDirectory, _xaml.RelativePath, Path.GetFileNameWithoutExtension(_xaml.Name) + ".g.cs");
+
+                // Add all generated bamls
                 CXUIBuildEngine.GeneratedFiles.Add(new GeneratedFile(generatedPath));
+                foreach (var baml in _task.AllGeneratedFiles)
+                {
+                    CXUIBuildEngine.GeneratedFiles.Add(new GeneratedFile(baml.ItemSpec));
+                }
+
+                string codeBehind = string.Format("{0}.cs", _xaml.Path);
+                if (File.Exists(codeBehind))
+                {
+                    CXUIBuildEngine.GeneratedFiles.Add(new GeneratedFile(codeBehind));
+                }
             }
 
             return true;

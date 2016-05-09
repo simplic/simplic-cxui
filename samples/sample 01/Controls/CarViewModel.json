@@ -1,6 +1,6 @@
 {
 	// Base model information
-	"fullQualifiedBaseViewModel": "Simplic.UI.ViewModelnase",
+	"fullQualifiedBaseViewModel": "Sample01.ViewModelBase",
 
 	// General
 	"name": "CarViewModel",

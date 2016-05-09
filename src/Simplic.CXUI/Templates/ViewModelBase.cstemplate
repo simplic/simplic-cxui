@@ -1,0 +1,115 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace {Namespace}
+{
+    /// <summary>
+    /// Base view model for all MVC-Based windows in the Simplic UI Framework
+    /// </summary>
+    public class ViewModelBase : INotifyPropertyChanged
+    {
+        #region Event and delegates
+        /// <summary>
+        /// Event which will be raised if an property has changed (Setter)
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
+        #region Private Member
+        private bool isDirty;
+        private ViewModelBase parent;
+        private bool forceSave;
+        #endregion
+
+        #region Constructor
+        /// <summary>
+        /// Create new model base
+        /// </summary>
+        public ViewModelBase()
+        {
+            isDirty = false;
+            forceSave = false;
+        }
+        #endregion
+
+        #region Public Methods
+        /// <summary>
+        /// Raise event for a property which value has changed
+        /// </summary>
+        /// <param name="propertyName">Name of the Property</param>
+        public void RaisePropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        /// <summary>
+        /// Called when DefaultRibbonWindow closes
+        /// used to clear locks
+        /// </summary>
+        public virtual void OnClose()
+        { 
+        
+        }
+        #endregion
+
+        #region Public Member
+        /// <summary>
+        /// Get/Set wether the values has changed in the current ViewModel instance. The default-value is false
+        /// </summary>
+        [Browsable(false)]
+        public bool IsDirty
+        {
+            get { return isDirty; }
+            set 
+            { 
+                isDirty = value;
+                ForceSave = value;
+            }
+        }
+        /// <summary>
+        /// get or set a state which indicates if something has changed and needs to be saved.
+        /// Passes the ForceSave value to the Parent
+        /// Used by DefaultRibbonWindow to call the OnSave method
+        /// </summary>
+        [Browsable(false)]
+        public bool ForceSave
+        {
+            get
+            {
+                return forceSave;
+            }
+            set
+            {
+                if (parent != null)
+                {
+                    parent.ForceSave = value;
+                }
+                forceSave = value;
+            }
+        }
+
+        /// <summary>
+        /// gets or sets the parent ViewModel
+        /// </summary>
+        [Browsable(false)]
+        public ViewModelBase Parent
+        {
+            get
+            { 
+                return parent; 
+            }
+            set
+            {
+                parent = value;
+            }
+        }
+        #endregion
+    }
+}

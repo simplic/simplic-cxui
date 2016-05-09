@@ -2,6 +2,7 @@
 	"assembly": "Sample01",
 	"rootNamespace": "Sample01",
 	"output": "../../sample-bin/",
+	"useAutogenerateViewModelBase": "true",
 	
 	// List of xaml source
 	"xaml":[
