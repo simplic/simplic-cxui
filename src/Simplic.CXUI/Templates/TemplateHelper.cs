@@ -33,6 +33,11 @@ namespace Simplic.CXUI
         public const string VIEWMODEL_BASE_TEMPLATE = "Simplic.CXUI.Templates.ViewModelBase.cstemplate";
 
         /// <summary>
+        /// Template for xaml code behind files
+        /// </summary>
+        public const string XAML_CODE_BEHIND_TEMPLATE = "Simplic.CXUI.Templates.XamlCodeBehind.cstemplate";
+
+        /// <summary>
         /// Get a filled template.
         /// </summary>
         /// <param name="name">Name of the template (use the constant strings to access them)</param>

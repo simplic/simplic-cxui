@@ -67,6 +67,7 @@
     <Reference Include="XamlBuildTask" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildTask\BuildCodeBehindTask.cs" />
     <Compile Include="BuildTask\BuildTaskBase.cs" />
     <Compile Include="BuildTask\CSharp\BuildAssemblyTask.cs" />
     <Compile Include="BuildTask\GeneratedFile.cs" />
@@ -88,6 +89,7 @@
     <None Include="packages.config" />
     <EmbeddedResource Include="Templates\ViewModel.cstemplate" />
     <EmbeddedResource Include="Templates\ViewModelBase.cstemplate" />
+    <EmbeddedResource Include="Templates\XamlCodeBehind.cstemplate" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

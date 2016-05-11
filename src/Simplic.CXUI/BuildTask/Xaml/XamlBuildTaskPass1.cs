@@ -79,7 +79,7 @@ namespace Simplic.CXUI.BuildTask
 
                 // Set default options
                 _task.AssemblyName = CXUIBuildEngine.AssemblyName;
-                _task.Language = "C#";
+                _task.Language = "cs";
                 _task.OutputPath = Path.Combine(TempOutputDirectory, _xaml.RelativePath);
                 
                 // Add all references as XamlItem

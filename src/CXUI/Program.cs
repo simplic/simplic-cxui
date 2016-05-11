@@ -215,6 +215,8 @@ namespace CXUI
             compileTask.OutputDirectory = configuration.Output;
             compileTask.WriteToFileSystem = true;
 
+            builder.Tasks.Add(new BuildCodeBehindTask());
+
             builder.Tasks.Add(compileTask);
 
             builder.Build();
