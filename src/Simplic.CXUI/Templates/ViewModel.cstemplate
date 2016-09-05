@@ -6,21 +6,54 @@ using System.Threading.Tasks;
 
 namespace {Namespace}
 {
-    public class {ModelName}
+    public class {ViewModelName} : {BaseViewModel}
     {
         #region Fields
 {Fields}
         #endregion
 
         #region Constructor
-		/// <summary>
-		/// Initialize new {ModelName}
-		/// </summary>
-        public {ModelName}()
+        public {ViewModelName}()
         {
         	{ConstructorCode}
         }
         #endregion
+
+        #region Public Methods
+        /// <summary>
+        /// Will be called before a property gets changed. If returning false, changing will be canceld
+        /// </summary>
+        /// <param name="name">Name of the property</param>
+        /// <param name="value">Old value of the property (current value)</param>
+        /// <param name="newValue">New value which should be set</param>
+        /// <returns>True if setting the value should be continued, else false</returns>
+        public virtual bool PropertyChanging(string name, object value, object newValue)
+        {
+			return true;
+        }
+
+		/// <summary>
+        /// Will be called after a property gets changed
+        /// </summary>
+        /// <param name="name">Name of the property</param>
+        /// <param name="value">Update value</param>
+        /// <param name="newValue">Old value before setting</param>
+		public virtual void PropertyChanged(string name, object value, object oldValue)
+        {
+
+        }
+
+        /// <summary>
+        /// Will be called before a property returns a value
+        /// </summary>
+        /// <param name="name">Name of the property</param>
+        /// <param name="value">Value which will be returned by default</param>
+        /// <returns>Value which should be returned from the property</returns>
+		public virtual object GetProperty(string name, object value)
+        {
+			return value;
+        }
+		#endregion
 
         #region Public Member
 {Properties}

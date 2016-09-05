@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -42,10 +43,11 @@ namespace Simplic.CXUI
         /// </summary>
         /// <param name="name">Name of the template (use the constant strings to access them)</param>
         /// <param name="values">Values which will be replaced within the template</param>
+        /// <param name="asm">Optional assembly</param>
         /// <returns>Temaplte as string</returns>
-        public static string GetTemplate(string name, IDictionary<string, string> values)
+        public static string GetTemplate(string name, IDictionary<string, string> values, Assembly asm = null)
         {
-            var assembly = typeof(TemplateHelper).Assembly;
+            var assembly = asm ?? typeof(TemplateHelper).Assembly;
             
             using (Stream stream = assembly.GetManifestResourceStream(name))
             {

@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="JsonPocoModelBuildTask.cs" />
+    <Compile Include="ModelDefinition.cs" />
+    <Compile Include="ModelPropertyDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +50,15 @@
       <Project>{624ccc63-e7dd-4ac7-9fd1-81701004343c}</Project>
       <Name>Simplic.CXUI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\Model.cstemplate" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\ModelField.cstemplate" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\ModelProperty.cstemplate" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
