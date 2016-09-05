@@ -4,6 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008">
 	<Grid>
-    	<TextBox Name="hello" />
+    	<TextBox Name="hello" Height="24" Margin="3" VerticalAlignment="Top" />
 	</Grid>
 </UserControl>

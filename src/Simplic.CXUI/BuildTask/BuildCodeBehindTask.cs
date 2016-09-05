@@ -10,6 +10,9 @@ using System.Text;
 
 namespace Simplic.CXUI.BuildTask
 {
+    /// <summary>
+    /// Build task to automatically crate code behind files which bases on generated c# files (*.g.cs).
+    /// </summary>
     public class BuildCodeBehindTask : BuildTaskBase
     {
         /// <summary>
@@ -18,9 +21,26 @@ namespace Simplic.CXUI.BuildTask
         /// <returns>True if creating was successfull</returns>
         public override bool Execute()
         {
+            IList<GeneratedFile> newlyGeneratedFiles = new List<GeneratedFile>();
+
             foreach (var generated in CXUIBuildEngine.GeneratedFiles.Where(item => item.Name.Contains(".g")))
             {
                 var cb = GetCodeBehind(generated.AbsolutePath);
+
+                string path = Path.GetFullPath
+                    (
+                        TempOutputDirectory +
+                        generated.RelativeDirectoryPath + "\\" +
+                        generated.Name.Replace(".g", ".xaml") + ".cs"
+                    );
+
+                File.WriteAllText(path, cb);
+                newlyGeneratedFiles.Add(new GeneratedFile(path));
+            }
+
+            foreach (var genFile in newlyGeneratedFiles)
+            {
+                CXUIBuildEngine.GeneratedFiles.Add(genFile);
             }
 
             return base.Execute();

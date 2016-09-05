@@ -19,7 +19,7 @@ namespace {Namespace}
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
-        #region Private Member
+        #region Fields
         private bool isDirty;
         private ViewModelBase parent;
         private bool forceSave;
