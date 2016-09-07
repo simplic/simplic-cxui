@@ -12,14 +12,14 @@
 			"parameter": [
 				{
 					"type": "Guid",
-					"name": "id"//,
-					//"default": ""
+					"name": "id",
+					"default": "default(Guid)"
 				}
-			],
-			"securityAttribute": {
-				"name": "JWTAuthorize",
-				"roles": []
-			}
+			]//,
+			//"securityAttribute": {
+			//	"name": "JWTAuthorize",
+			//	"roles": []
+			//}
 		}
 	]
 }

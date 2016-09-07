@@ -168,7 +168,7 @@ namespace Simplic.CXUI.WebApi2
                                 parameters.Append(", ");
                             }
 
-                            parameters.Append($"{parameter.Type} {parameter.Name} {(parameter.Default == null ? "" : $" = {parameter.Default}")}");
+                            parameters.Append($"{parameter.Type} {parameter.Name}{(parameter.Default == null ? "" : $" = {parameter.Default}")}");
                         }
 
                         actionTemplateFields.Add("Parameter", parameters.ToString().Trim());
