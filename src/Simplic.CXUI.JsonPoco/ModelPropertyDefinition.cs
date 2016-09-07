@@ -26,7 +26,8 @@ namespace Simplic.CXUI.JsonPoco
                     if (field.Length > 0)
                     {
                         string lower = field[0].ToString().ToLower();
-                        field.Insert(0, lower);
+                        field = field.Remove(0, 1);
+                        field = field.Insert(0, lower);
                     }
 
                     return $"_{field}".Trim();

@@ -1,5 +1,5 @@
 ﻿using Simplic.CXUI.BuildTask;
-using Simplic.CXUI.BuildTask.ViewModel;
+using Simplic.CXUI.ViewModel;
 
 namespace Simplic.CXUI.JsonViewModel
 {

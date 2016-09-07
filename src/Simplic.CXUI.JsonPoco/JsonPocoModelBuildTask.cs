@@ -1,4 +1,5 @@
-﻿using Simplic.CXUI.BuildTask;
+﻿using Newtonsoft.Json;
+using Simplic.CXUI.BuildTask;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,7 +37,8 @@ namespace Simplic.CXUI.JsonPoco
             foreach (var file in modelFiles)
             {
                 // Deserialize json and store as model to compile
-                var model = new ModelDefinition();
+                var json = File.ReadAllText(file);
+                var model = JsonConvert.DeserializeObject<ModelDefinition>(json);
 
                 model.__AbsolutePath__ = Path.GetDirectoryName(file);
                 model.__RelativePath__ = Path.GetDirectoryName(model.__AbsolutePath__.Replace(CXUIBuildEngine.ProjectRoot, "") + "\\");

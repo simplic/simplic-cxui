@@ -3,7 +3,11 @@ using Newtonsoft.Json;
 using Simplic.CommandShell;
 using Simplic.CXUI;
 using Simplic.CXUI.BuildTask;
+using Simplic.CXUI.JsonPoco;
 using Simplic.CXUI.JsonViewModel;
+using Simplic.CXUI.ViewModel;
+using Simplic.CXUI.WebApi2;
+using Simplic.CXUI.Xaml;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -112,6 +116,22 @@ namespace CXUI
 
             Console.WriteLine("Compilation output: {0}", configuration.Output);
 
+            Console.WriteLine("Poco model files");
+            foreach (var vm in configuration.Models)
+            {
+                string path = Path.Combine(projectDirectory, vm);
+                Console.WriteLine(Path.Combine(projectDirectory, vm));
+                if (!File.Exists(path))
+                {
+                    using (var _consoleColor = new ConsoleColorChanger(ConsoleColor.Red))
+                    {
+                        Console.WriteLine("Could not find poco model file: {0}", path);
+                    }
+                    return "";
+                }
+            }
+            Console.WriteLine("...");
+
             Console.WriteLine("Xaml files");
             foreach (var xaml in configuration.Xaml)
             {
@@ -168,7 +188,7 @@ namespace CXUI
 
             // Set the minimum of required assemblies
             // Set references
-            builder.References = new[]
+            builder.AddReferences(new[]
             {
                 typeof(object).Assembly,
                 typeof(Enumerable).Assembly,
@@ -179,7 +199,28 @@ namespace CXUI
                 typeof(System.Windows.Application).Assembly,
                 typeof(System.Windows.Ink.ApplicationGesture).Assembly,
                 typeof(System.Xaml.XamlSchemaContext).Assembly
-            };
+            });
+
+            // Create poco build task
+            var modelTask = new JsonPocoModelBuildTask();
+            builder.Tasks.Add(modelTask);
+
+            foreach (var model in configuration.Models)
+            {
+                string path = Path.Combine(projectDirectory, model);
+                modelTask.ModelFiles.Add(path);
+            }
+
+            // Create web api 2 build task
+            var webApiTask = new WebApi2ControllerBuildTask((s) => { return "\t\t\treturn null;"; });
+            builder.Tasks.Add(webApiTask);
+
+            foreach (var model in configuration.WebApiController)
+            {
+                string path = Path.Combine(projectDirectory, model);
+                webApiTask.ControllerDefinitionFiles.Add(path);
+            }
+            
 
             // Create xaml building task
             var xamlTask = new XamlBuildTaskPass1();

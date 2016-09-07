@@ -1,0 +1,5 @@
+﻿{Attributes}
+		public async Task<IHttpActionResult> {Name}({Parameter})
+		{
+{MethodBody}
+		}

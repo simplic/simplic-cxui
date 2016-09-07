@@ -1,6 +1,7 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Simplic.CXUI.BuildTask;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Simplic.CXUI.BuildTask
+namespace Simplic.CXUI.Xaml
 {
     /// <summary>
     /// Build task to automatically crate code behind files which bases on generated c# files (*.g.cs).
@@ -121,7 +122,7 @@ namespace Simplic.CXUI.BuildTask
                 properties.Add("BaseClass", baseClass);
                 properties.Add("BaseClassNamespace", baseNamespace);
 
-                return TemplateHelper.GetTemplate(TemplateHelper.XAML_CODE_BEHIND_TEMPLATE, properties);
+                return TemplateHelper.GetTemplate("Simplic.CXUI.Xaml.Templates.XamlCodeBehind.cstemplate", properties, typeof(BuildCodeBehindTask).Assembly);
             }
 
             return "";

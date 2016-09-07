@@ -4,15 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simplic.CXUI
+namespace Simplic.CXUI.WebApi2
 {
     /// <summary>
-    /// Xaml source instance
+    /// Contains the definition of an action parameter
     /// </summary>
-    public class XamlSource
+    public class ActionParameterDefinition
     {
         /// <summary>
-        /// Name of the UI element
+        /// Gets or sets the type of the parameter
+        /// </summary>
+        public string Type
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the name of the parameter
         /// </summary>
         public string Name
         {
@@ -21,27 +30,9 @@ namespace Simplic.CXUI
         }
 
         /// <summary>
-        /// Path to the source file
+        /// Gets or sets the default value
         /// </summary>
-        public string Path
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Xaml source code
-        /// </summary>
-        public string XamlCode
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Relative path to the source file, without source name
-        /// </summary>
-        internal string RelativePath
+        public string Default
         {
             get;
             set;

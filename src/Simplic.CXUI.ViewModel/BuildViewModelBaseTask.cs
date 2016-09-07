@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Simplic.CXUI.BuildTask;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simplic.CXUI.BuildTask
+namespace Simplic.CXUI.ViewModel
 {
     /// <summary>
     /// Embedd base viewmodel into the assembly
@@ -23,7 +24,7 @@ namespace Simplic.CXUI.BuildTask
             var placeholder = new Dictionary<string, string>();
             placeholder.Add("Namespace", CXUIBuildEngine.RootNamespace);
 
-            string code = TemplateHelper.GetTemplate(TemplateHelper.VIEWMODEL_BASE_TEMPLATE, placeholder);
+            string code = TemplateHelper.GetTemplate("Simplic.CXUI.ViewModel.Templates.ViewModelBase.cstemplate", placeholder, typeof(BuildViewModelBaseTask).Assembly);
 
             if (!Directory.Exists(Path.GetDirectoryName(_path)))
             {

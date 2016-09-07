@@ -1,0 +1,25 @@
+// Controller
+
+{
+	"name": "SampleController",
+	"namespace": "SampleNamespace01",
+	"base": "ApiController",
+	"actions": [
+		{
+			"method": "Get",
+			"name": "GetById",
+			"returns": "DocumentModel",
+			"parameter": [
+				{
+					"type": "Guid",
+					"name": "id"//,
+					//"default": ""
+				}
+			],
+			"securityAttribute": {
+				"name": "JWTAuthorize",
+				"roles": []
+			}
+		}
+	]
+}

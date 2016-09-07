@@ -3,27 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace {Namespace}
 {
-    public class {ModelName}
+{Attributes}
+    public class {ControllerName} : {ControllerBase}
     {
         #region Fields
-{Fields}
+
         #endregion
 
         #region Constructor
 		/// <summary>
-		/// Initialize new {ModelName}
+		/// Initialize new {ControllerName}
 		/// </summary>
-        public {ModelName}()
+        public {ControllerName}()
         {
         	
         }
         #endregion
 
-        #region Public Member
-{Properties}
+        #region Public Methods
+{Actions}
         #endregion
     }
 }

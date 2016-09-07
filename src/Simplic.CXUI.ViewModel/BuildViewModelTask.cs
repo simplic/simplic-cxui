@@ -1,15 +1,14 @@
-﻿using Microsoft.Build.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections;
-using Simplic.CXUI.BuildTask.ViewModel;
 using System.IO;
+using Simplic.CXUI.BuildTask;
 
-namespace Simplic.CXUI.BuildTask
+namespace Simplic.CXUI.ViewModel
 {
     /// <summary>
     /// Generates the viewmodels for the generated and compiled xaml files
@@ -85,7 +84,7 @@ namespace Simplic.CXUI.BuildTask
                 {
                     // Field
                     string field = string.Format("_{0}", property.Name.Trim());
-                    fields.AppendLine(TemplateHelper.GetTemplate(TemplateHelper.VIEWMODEL_FIELD_TEMPLATE, new Dictionary<string, string> { { "Type", property.Type }, { "Name", field } }));
+                    fields.AppendLine(TemplateHelper.GetTemplate("Simplic.CXUI.ViewModel.Templates.ViewModelField.cstemplate", new Dictionary<string, string> { { "Type", property.Type }, { "Name", field } }, typeof(BuildViewModelTask).Assembly));
 
 
                     Dictionary<string, string> propertyTemplateFields = new Dictionary<string, string>();
@@ -113,7 +112,7 @@ namespace Simplic.CXUI.BuildTask
                         propertyTemplateFields["RaisePropertyChanged"] = string.Format("{0}(\"{1}\");", baseViewModel.RaisePropertyChangedMethod, property.Name);
                     }
 
-                    properties.AppendLine(TemplateHelper.GetTemplate(TemplateHelper.VIEWMODEL_PROPERTY_TEMPLATE, propertyTemplateFields));
+                    properties.AppendLine(TemplateHelper.GetTemplate("Simplic.CXUI.ViewModel.Templates.ViewModelProperty.cstemplate", propertyTemplateFields, typeof(BuildViewModelTask).Assembly));
                     properties.AppendLine();
                 }
 
@@ -123,7 +122,7 @@ namespace Simplic.CXUI.BuildTask
                 values.Add("Properties", properties.ToString().TrimEnd());
 
                 // Generate file
-                string template = TemplateHelper.GetTemplate(TemplateHelper.VIEWMODEL_TEMPLATE, values);
+                string template = TemplateHelper.GetTemplate("Simplic.CXUI.ViewModel.Templates.ViewModel.cstemplate", values, typeof(BuildViewModelTask).Assembly);
 
                 if (!Directory.Exists(Path.GetDirectoryName(tempOutputPath)))
                 {

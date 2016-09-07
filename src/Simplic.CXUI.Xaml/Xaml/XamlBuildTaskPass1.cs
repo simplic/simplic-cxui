@@ -1,5 +1,6 @@
 ﻿using Microsoft.Build.Framework;
 using Microsoft.Build.Tasks.Windows;
+using Simplic.CXUI.BuildTask;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simplic.CXUI.BuildTask
+namespace Simplic.CXUI.Xaml
 {
     /// <summary>
     /// Task for compiling xaml into baml and save in the temporary output directory

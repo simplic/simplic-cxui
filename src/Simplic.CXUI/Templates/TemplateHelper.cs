@@ -14,26 +14,6 @@ namespace Simplic.CXUI
     public static class TemplateHelper
     {
         /// <summary>
-        /// Path to the viewmodel template
-        /// </summary>
-        public const string VIEWMODEL_TEMPLATE = "Simplic.CXUI.Templates.ViewModel.cstemplate";
-
-        /// <summary>
-        /// Proeprty template for viewmodels (getter/setter)
-        /// </summary>
-        public const string VIEWMODEL_PROPERTY_TEMPLATE = "Simplic.CXUI.Templates.ViewModelProperty.cstemplate";
-
-        /// <summary>
-        /// Viewmodel field property
-        /// </summary>
-        public const string VIEWMODEL_FIELD_TEMPLATE = "Simplic.CXUI.Templates.ViewModelField.cstemplate";
-
-        /// <summary>
-        /// Viewmodel base which will be currently compiled into any assembly
-        /// </summary>
-        public const string VIEWMODEL_BASE_TEMPLATE = "Simplic.CXUI.Templates.ViewModelBase.cstemplate";
-
-        /// <summary>
         /// Template for xaml code behind files
         /// </summary>
         public const string XAML_CODE_BEHIND_TEMPLATE = "Simplic.CXUI.Templates.XamlCodeBehind.cstemplate";
@@ -45,7 +25,7 @@ namespace Simplic.CXUI
         /// <param name="values">Values which will be replaced within the template</param>
         /// <param name="asm">Optional assembly</param>
         /// <returns>Temaplte as string</returns>
-        public static string GetTemplate(string name, IDictionary<string, string> values, Assembly asm = null)
+        public static string GetTemplate(string name, IDictionary<string, string> values, Assembly asm)
         {
             var assembly = asm ?? typeof(TemplateHelper).Assembly;
             
@@ -54,17 +34,26 @@ namespace Simplic.CXUI
                 using (StreamReader reader = new StreamReader(stream))
                 {
                     string result = reader.ReadToEnd();
-
-                    foreach (var val in values)
-                    {
-                        result = result.Replace("{" + val.Key + "}", val.Value);
-                    }
-
-                    return result;
+                    
+                    return ReplacePlaceholder(result, values);
                 }
             }
+        }
 
-            return null;
+        /// <summary>
+        /// Replace a set of placeholder in a string
+        /// </summary>
+        /// <param name="template">Template code</param>
+        /// <param name="values">Value (K/V)</param>
+        /// <returns>Prepared template</returns>
+        public static string ReplacePlaceholder(string template, IDictionary<string, string> values)
+        {
+            foreach (var val in values)
+            {
+                template = template.Replace("{" + val.Key + "}", val.Value);
+            }
+
+            return template;
         }
     }
 }

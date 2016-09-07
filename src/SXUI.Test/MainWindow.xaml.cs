@@ -50,18 +50,18 @@ namespace SXUI.Test
                 builder.RootNamespace = "Testing";
 
                 // Set references
-                builder.References = new[]
+                builder.AddReferences(new[]
                 {
-                typeof(object).Assembly,
-                typeof(Enumerable).Assembly,
-                typeof(Uri).Assembly,
-                typeof(System.Xml.XmlAttribute).Assembly,
-                typeof(XamlLanguage).Assembly,
-                typeof(System.Windows.Point).Assembly,
-                typeof(System.Windows.Application).Assembly,
-                typeof(ApplicationGesture).Assembly,
-                typeof(System.Xaml.XamlSchemaContext).Assembly
-            };
+                    typeof(object).Assembly,
+                    typeof(Enumerable).Assembly,
+                    typeof(Uri).Assembly,
+                    typeof(System.Xml.XmlAttribute).Assembly,
+                    typeof(XamlLanguage).Assembly,
+                    typeof(System.Windows.Point).Assembly,
+                    typeof(System.Windows.Application).Assembly,
+                    typeof(ApplicationGesture).Assembly,
+                    typeof(System.Xaml.XamlSchemaContext).Assembly
+                });
 
                 builder.Build();
 

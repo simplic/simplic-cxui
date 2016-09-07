@@ -36,8 +36,8 @@
   <ItemGroup>
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dependencies\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -78,9 +78,25 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Simplic.CXUI.JsonPoco\Simplic.CXUI.JsonPoco.csproj">
+      <Project>{c3681cef-f584-4d91-aec2-bb8cfaa79c2b}</Project>
+      <Name>Simplic.CXUI.JsonPoco</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Simplic.CXUI.JsonViewModel\Simplic.CXUI.JsonViewModel.csproj">
       <Project>{76a0191d-d55b-475a-9c99-5db0391ad4f4}</Project>
       <Name>Simplic.CXUI.JsonViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simplic.CXUI.ViewModel\Simplic.CXUI.ViewModel.csproj">
+      <Project>{9418591c-5b77-45da-9cb1-6996fc7a24fb}</Project>
+      <Name>Simplic.CXUI.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simplic.CXUI.WebApi2\Simplic.CXUI.WebApi2.csproj">
+      <Project>{00850dfd-2bac-4aac-9d5d-98b5710a3d63}</Project>
+      <Name>Simplic.CXUI.WebApi2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simplic.CXUI.Xaml\Simplic.CXUI.Xaml.csproj">
+      <Project>{2f3ffd52-c143-4d03-a904-76c4447c6033}</Project>
+      <Name>Simplic.CXUI.Xaml</Name>
     </ProjectReference>
     <ProjectReference Include="..\Simplic.CXUI\Simplic.CXUI.csproj">
       <Project>{624ccc63-e7dd-4ac7-9fd1-81701004343c}</Project>

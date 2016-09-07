@@ -21,6 +21,7 @@ namespace CXUI
             Xaml = new List<string>();
             ViewModels = new List<string>();
             Ressources = new List<string>();
+            Models = new List<string>();
         }
 
         /// <summary>
@@ -81,6 +82,24 @@ namespace CXUI
         /// List of ressources
         /// </summary>
         public IList<string> Ressources
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets a list of poco models
+        /// </summary>
+        public IList<string> Models
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets a list of web api controller
+        /// </summary>
+        public IList<string> WebApiController
         {
             get;
             set;
