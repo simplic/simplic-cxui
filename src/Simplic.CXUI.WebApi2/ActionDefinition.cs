@@ -48,6 +48,15 @@ namespace Simplic.CXUI.WebApi2
         }
 
         /// <summary>
+        /// Gets or sets a list of parameter
+        /// </summary>
+        public IList<ActionParameterDefinition> Parameter
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets or sets the usage of a security attribute
         /// </summary>
 

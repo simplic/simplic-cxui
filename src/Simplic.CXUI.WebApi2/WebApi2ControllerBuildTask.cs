@@ -44,7 +44,7 @@ namespace Simplic.CXUI.WebApi2
         private string GetSecurityAttributeString(SecurityAttributeDefinition definition)
         {
             StringBuilder attributes = new StringBuilder();
-            if (definition  != null && !string.IsNullOrWhiteSpace(definition.Name))
+            if (definition != null && !string.IsNullOrWhiteSpace(definition.Name))
             {
                 string roles = "";
 
@@ -100,7 +100,7 @@ namespace Simplic.CXUI.WebApi2
 
                 // List of values which will be replaced in the file
                 var values = new Dictionary<string, string>();
-                
+
                 StringBuilder actions = new StringBuilder();
 
                 values.Add("Namespace", controller.Namespace);
@@ -157,7 +157,22 @@ namespace Simplic.CXUI.WebApi2
                     Dictionary<string, string> actionTemplateFields = new Dictionary<string, string>();
                     actionTemplateFields.Add("Attributes", attributes.ToString());
                     actionTemplateFields.Add("Name", action.Name);
-                    actionTemplateFields.Add("Parameter", action.Method);
+
+                    if (action.Parameter != null)
+                    {
+                        StringBuilder parameters = new StringBuilder();
+                        foreach (var parameter in action.Parameter)
+                        {
+                            if (parameters.Length > 0)
+                            {
+                                parameters.Append(", ");
+                            }
+
+                            parameters.Append($"{parameter.Type} {parameter.Name} {(parameter.Default == null ? "" : $" = {parameter.Default}")}");
+                        }
+
+                        actionTemplateFields.Add("Parameter", parameters.ToString().Trim());
+                    }
 
                     // Generate action body settings
                     actionTemplateFields.Add("MethodBody", actionBodyGenerator(action.ActionBodySettings));

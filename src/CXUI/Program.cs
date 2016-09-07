@@ -198,7 +198,10 @@ namespace CXUI
                 typeof(System.Windows.Point).Assembly,
                 typeof(System.Windows.Application).Assembly,
                 typeof(System.Windows.Ink.ApplicationGesture).Assembly,
-                typeof(System.Xaml.XamlSchemaContext).Assembly
+                typeof(System.Xaml.XamlSchemaContext).Assembly,
+
+                typeof(System.Web.Http.ApiController).Assembly,
+                typeof(System.Web.Http.HttpGetAttribute).Assembly
             });
 
             // Create poco build task
