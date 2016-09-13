@@ -6,6 +6,10 @@
 		{
 			"name": "Id",
 			"type": "Guid"
+		},
+		{
+			"name": "fileName",
+			"type": "string"
 		}
 	]
 }

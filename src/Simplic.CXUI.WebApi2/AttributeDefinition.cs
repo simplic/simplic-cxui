@@ -7,21 +7,12 @@ using System.Threading.Tasks;
 namespace Simplic.CXUI.WebApi2
 {
     /// <summary>
-    /// Contains the definition of an action parameter
+    /// Contains an attribute definition
     /// </summary>
-    public class ActionParameterDefinition
+    public class AttributeDefinition
     {
         /// <summary>
-        /// Gets or sets the type of the parameter
-        /// </summary>
-        public string Type
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Gets or sets the name of the parameter
+        /// Gets or sets the attribute name
         /// </summary>
         public string Name
         {
@@ -30,9 +21,9 @@ namespace Simplic.CXUI.WebApi2
         }
 
         /// <summary>
-        /// Gets or sets the default value
+        /// Gets or sets a list of attribute parameter
         /// </summary>
-        public string Default
+        public IList<ParameterDefinition> Parameter
         {
             get;
             set;

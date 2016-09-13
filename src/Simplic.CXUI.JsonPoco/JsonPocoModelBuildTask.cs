@@ -48,7 +48,7 @@ namespace Simplic.CXUI.JsonPoco
 
             foreach (var model in modelDefinitions)
             {
-                string tempOutputPath = Path.Combine(TempOutputDirectory, model.__RelativePath__, model.Name + ".cs");
+                string tempOutputPath = $"{TempOutputDirectory}{Path.Combine(model.__RelativePath__, model.Name)}.cs";
                 Console.WriteLine("Generate: " + tempOutputPath);
 
                 // List of values which will be replaced in the file

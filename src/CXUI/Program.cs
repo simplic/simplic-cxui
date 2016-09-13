@@ -215,7 +215,7 @@ namespace CXUI
             }
 
             // Create web api 2 build task
-            var webApiTask = new WebApi2ControllerBuildTask((s) => { return "\t\t\treturn null;"; });
+            var webApiTask = new WebApi2ControllerBuildTask((c, a) => { return "\t\t\treturn null;"; });
             builder.Tasks.Add(webApiTask);
 
             foreach (var model in configuration.WebApiController)

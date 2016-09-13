@@ -20,13 +20,14 @@ namespace Simplic.CXUI.WebApi2
         private string actionTemplate;
         private IList<string> controllerDefinitionFiles;
 
-        private Func<IDictionary<string, object>, string> actionBodyGenerator;
+        private Func<ControllerDefinition, ActionDefinition, string> actionBodyGenerator;
         #endregion
 
         /// <summary>
         /// Initialize new web api controller build task
         /// </summary>
-        public WebApi2ControllerBuildTask(Func<IDictionary<string, object>, string> actionBodyGenerator) : base()
+        /// <param name="actionBodyGenerator"></param>
+        public WebApi2ControllerBuildTask(Func<ControllerDefinition, ActionDefinition, string> actionBodyGenerator) : base()
         {
             this.actionBodyGenerator = actionBodyGenerator;
 
@@ -74,6 +75,39 @@ namespace Simplic.CXUI.WebApi2
         }
 
         /// <summary>
+        /// Make string out of attribute definition
+        /// </summary>
+        /// <param name="definition">Attribute definition instance</param>
+        /// <returns>Definition as string</returns>
+        private string GetAttributeAsString(AttributeDefinition definition)
+        {
+            if (definition == null)
+            {
+                return null;
+            }
+
+            var builder = new StringBuilder();
+            var parameter = new StringBuilder();
+
+            if (definition.Parameter != null)
+            {
+                foreach (var param in definition.Parameter)
+                {
+                    if (parameter.Length > 0)
+                    {
+                        parameter.Append(", ");
+                    }
+
+                    parameter.Append($"{param.Name}{(param.Value == null ? "" : $" = {param.Value}")}");
+                }
+            }
+
+            builder.Append($"[{definition.Name}({parameter.ToString()})]");
+
+            return builder.ToString();
+        }
+
+        /// <summary>
         /// Create controller c# code
         /// </summary>
         /// <returns>Returns true, when creating the controller was successfull</returns>
@@ -95,7 +129,7 @@ namespace Simplic.CXUI.WebApi2
 
             foreach (var controller in controllerDefinitions)
             {
-                string tempOutputPath = Path.Combine(TempOutputDirectory, controller.__RelativePath__, controller.Name + ".cs");
+                string tempOutputPath = $"{TempOutputDirectory}{Path.Combine(controller.__RelativePath__, controller.Name)}.cs";
                 Console.WriteLine("Generate: " + tempOutputPath);
 
                 // List of values which will be replaced in the file
@@ -118,7 +152,7 @@ namespace Simplic.CXUI.WebApi2
                         {
                             controllerAttr.Append("\r\n");
                         }
-                        controllerAttr.Append($"\t\t{attr}");
+                        controllerAttr.Append($"\t\t{GetAttributeAsString(attr)}");
                     }
                 }
 
@@ -149,7 +183,7 @@ namespace Simplic.CXUI.WebApi2
                             {
                                 attributes.Append("\r\n");
                             }
-                            attributes.Append($"\t\t{attr}");
+                            attributes.Append($"\t\t{GetAttributeAsString(attr)}");
                         }
                     }
 
@@ -159,7 +193,7 @@ namespace Simplic.CXUI.WebApi2
                     actionTemplateFields.Add("Name", action.Name);
 
                     if (action.Parameter != null)
-                    {
+                    { 
                         StringBuilder parameters = new StringBuilder();
                         foreach (var parameter in action.Parameter)
                         {
@@ -168,14 +202,14 @@ namespace Simplic.CXUI.WebApi2
                                 parameters.Append(", ");
                             }
 
-                            parameters.Append($"{parameter.Type} {parameter.Name}{(parameter.Default == null ? "" : $" = {parameter.Default}")}");
+                            parameters.Append($"{parameter.Type} {parameter.Name}{(parameter.Value == null ? "" : $" = {parameter.Value}")}");
                         }
 
                         actionTemplateFields.Add("Parameter", parameters.ToString().Trim());
                     }
 
                     // Generate action body settings
-                    actionTemplateFields.Add("MethodBody", actionBodyGenerator(action.ActionBodySettings));
+                    actionTemplateFields.Add("MethodBody", actionBodyGenerator(controller, action));
 
                     actions.AppendLine(TemplateHelper.ReplacePlaceholder(actionTemplate, actionTemplateFields));
                     actions.AppendLine();

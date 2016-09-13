@@ -41,7 +41,7 @@ namespace Simplic.CXUI.WebApi2
         /// <summary>
         /// Gets or sets a list of attributes
         /// </summary>
-        public IList<string> Attributes
+        public IList<AttributeDefinition> Attributes
         {
             get;
             set;
@@ -50,7 +50,7 @@ namespace Simplic.CXUI.WebApi2
         /// <summary>
         /// Gets or sets a list of parameter
         /// </summary>
-        public IList<ActionParameterDefinition> Parameter
+        public IList<ParameterDefinition> Parameter
         {
             get;
             set;

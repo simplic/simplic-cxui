@@ -44,8 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionDefinition.cs" />
+    <Compile Include="AttributeDefinition.cs" />
     <Compile Include="ControllerDefinition.cs" />
-    <Compile Include="ActionParameterDefinition.cs" />
+    <Compile Include="ParameterDefinition.cs" />
     <Compile Include="SecurityAttributeDefinition.cs" />
     <Compile Include="WebApi2ControllerBuildTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

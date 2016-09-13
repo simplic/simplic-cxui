@@ -3,7 +3,7 @@
 {
 	"name": "SampleController",
 	"namespace": "SampleNamespace01",
-	"base": "ApiController",
+	"base": "PowerAppApiController",
 	"actions": [
 		{
 			"method": "Get",
@@ -15,11 +15,38 @@
 					"name": "id",
 					"default": "default(Guid)"
 				}
-			]//,
+			],
+			
+			"attributes":[
+				{
+					"name": "Test",
+					"parameter":
+					[
+						{
+							"name": "Param1",
+							"value": "\"Value123\""
+						},
+						{
+							"name": "param2",
+							"value": "123"
+						}
+					]
+				}
+			]
+			
+			
+			//,
 			//"securityAttribute": {
 			//	"name": "JWTAuthorize",
 			//	"roles": []
 			//}
+			, "actionBodySettings":
+			{
+				"type": "ipy",
+				"script": "/private/powerapps/documentsample.py",
+				"class": "documentsample",
+				"method": "get_documents"	
+			}
 		}
 	]
 }
