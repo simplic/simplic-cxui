@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,7 +31,7 @@ namespace Simplic.CXUI.BuildTask
             {
                 return BuildEngine as CXUIBuilder;
             }
-        } 
+        }
 
         /// <summary>
         /// Build hosting object
@@ -58,5 +59,14 @@ namespace Simplic.CXUI.BuildTask
             get;
             set;
         }
+
+        /// <summary>
+        /// Gets or sets a list of assemblies that are required for the current build step
+        /// </summary>
+        public virtual IList<Assembly> Assemblies
+        {
+            get;
+            set;
+        } = new List<Assembly>();
     }
 }

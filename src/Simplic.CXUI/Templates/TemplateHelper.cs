@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,51 +14,46 @@ namespace Simplic.CXUI
     public static class TemplateHelper
     {
         /// <summary>
-        /// Path to the viewmodel template
+        /// Template for xaml code behind files
         /// </summary>
-        public const string VIEWMODEL_TEMPLATE = "Simplic.CXUI.Templates.ViewModel.cstemplate";
-
-        /// <summary>
-        /// Proeprty template for viewmodels (getter/setter)
-        /// </summary>
-        public const string VIEWMODEL_PROPERTY_TEMPLATE = "Simplic.CXUI.Templates.ViewModelProperty.cstemplate";
-
-        /// <summary>
-        /// Viewmodel field property
-        /// </summary>
-        public const string VIEWMODEL_FIELD_TEMPLATE = "Simplic.CXUI.Templates.ViewModelField.cstemplate";
-
-        /// <summary>
-        /// Viewmodel base which will be currently compiled into any assembly
-        /// </summary>
-        public const string VIEWMODEL_BASE_TEMPLATE = "Simplic.CXUI.Templates.ViewModelBase.cstemplate";
+        public const string XAML_CODE_BEHIND_TEMPLATE = "Simplic.CXUI.Templates.XamlCodeBehind.cstemplate";
 
         /// <summary>
         /// Get a filled template.
         /// </summary>
         /// <param name="name">Name of the template (use the constant strings to access them)</param>
         /// <param name="values">Values which will be replaced within the template</param>
+        /// <param name="asm">Optional assembly</param>
         /// <returns>Temaplte as string</returns>
-        public static string GetTemplate(string name, IDictionary<string, string> values)
+        public static string GetTemplate(string name, IDictionary<string, string> values, Assembly asm)
         {
-            var assembly = typeof(TemplateHelper).Assembly;
+            var assembly = asm ?? typeof(TemplateHelper).Assembly;
             
             using (Stream stream = assembly.GetManifestResourceStream(name))
             {
                 using (StreamReader reader = new StreamReader(stream))
                 {
                     string result = reader.ReadToEnd();
-
-                    foreach (var val in values)
-                    {
-                        result = result.Replace("{" + val.Key + "}", val.Value);
-                    }
-
-                    return result;
+                    
+                    return ReplacePlaceholder(result, values);
                 }
             }
+        }
 
-            return null;
+        /// <summary>
+        /// Replace a set of placeholder in a string
+        /// </summary>
+        /// <param name="template">Template code</param>
+        /// <param name="values">Value (K/V)</param>
+        /// <returns>Prepared template</returns>
+        public static string ReplacePlaceholder(string template, IDictionary<string, string> values)
+        {
+            foreach (var val in values)
+            {
+                template = template.Replace("{" + val.Key + "}", val.Value);
+            }
+
+            return template;
         }
     }
 }

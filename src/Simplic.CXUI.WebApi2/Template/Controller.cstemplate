@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Http;
+
+namespace {Namespace}
+{
+{Attributes}
+    public class {ControllerName} : {ControllerBase}
+    {
+        #region Fields
+
+        #endregion
+
+        #region Constructor
+		/// <summary>
+		/// Initialize new {ControllerName}
+		/// </summary>
+        public {ControllerName}()
+        {
+        	
+        }
+        #endregion
+
+        #region Public Methods
+{Actions}
+        #endregion
+    }
+}

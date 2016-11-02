@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace {Namespace}
+{
+    public class {ModelName}
+    {
+        #region Fields
+{Fields}
+        #endregion
+
+        #region Constructor
+		/// <summary>
+		/// Initialize new {ModelName}
+		/// </summary>
+        public {ModelName}()
+        {
+        	
+        }
+        #endregion
+
+        #region Public Member
+{Properties}
+        #endregion
+    }
+}

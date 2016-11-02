@@ -13,7 +13,17 @@
 	"viewModels":[
 		"Controls/CarViewModel.json"
 	],
+
+	// List of poco models
+	"models": [
+		"WebApi/SampleModel.json"
+	],
 	
+	// List of web api controller
+	"webApiController": [
+		"WebApi/SampleController.json"
+	],
+
 	// A list of additional c# code files
 	"sources":[
 		

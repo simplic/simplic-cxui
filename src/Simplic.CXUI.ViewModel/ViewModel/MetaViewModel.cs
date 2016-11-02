@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simplic.CXUI.BuildTask.ViewModel
+namespace Simplic.CXUI.ViewModel
 {
     /// <summary>
     /// Class which contains all information a MetaViewModel must contain

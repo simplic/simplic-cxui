@@ -65,9 +65,17 @@ namespace Simplic.CXUI.BuildTask
 
             foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies())
             {
-                if (!CXUIBuildEngine.References.Contains(asm) && !string.IsNullOrWhiteSpace(asm.Location))
+                try
                 {
-                    references.Add(MetadataReference.CreateFromFile(asm.Location));
+                    if (!CXUIBuildEngine.References.Contains(asm) && !string.IsNullOrWhiteSpace(asm.Location))
+                    {
+
+                        references.Add(MetadataReference.CreateFromFile(asm.Location));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Skip: assembly");
                 }
             }
 

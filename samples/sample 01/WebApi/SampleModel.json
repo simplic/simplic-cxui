@@ -1,0 +1,15 @@
+// Models
+{
+	"namespace": "SampleNamespace01",
+	"name": "DocumentModel",
+	"properties": [
+		{
+			"name": "Id",
+			"type": "Guid"
+		},
+		{
+			"name": "fileName",
+			"type": "string"
+		}
+	]
+}

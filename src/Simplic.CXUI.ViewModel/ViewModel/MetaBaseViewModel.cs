@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simplic.CXUI.BuildTask.ViewModel
+namespace Simplic.CXUI.ViewModel
 {
     /// <summary>
     /// Model which descripes the layout of the BaseViewModel from which a ViewModel inherits

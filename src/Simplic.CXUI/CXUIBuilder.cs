@@ -26,6 +26,7 @@ namespace Simplic.CXUI
         #region Fields
         private IList<BuildTask.BuildTaskBase> tasks;
         private string assemblyName;
+        private IList<Assembly> references;
         #endregion
 
         #region Constructor
@@ -35,6 +36,7 @@ namespace Simplic.CXUI
         public CXUIBuilder()
         {
             RootNamespace = "DynamicSXUI";
+            references = new List<Assembly>();
 
             foreach (var asm in this.GetType().Assembly.GetReferencedAssemblies())
             {
@@ -162,6 +164,38 @@ namespace Simplic.CXUI
         {
             return false;
         }
+
+        /// <summary>
+        /// Add assembly as reference
+        /// </summary>
+        /// <param name="assembly">Reference instance</param>
+        public void AddReference(Assembly assembly)
+        {
+            if (assembly == null)
+            {
+                throw new ArgumentNullException(nameof(assembly));
+            }
+            if (!references.Contains(assembly))
+            {
+                references.Add(assembly);
+            }
+        }
+
+        /// <summary>
+        /// Add a list of assemblies as reference
+        /// </summary>
+        /// <param name="assemblies">Reference instance</param>
+        public void AddReferences(Assembly[] assemblies)
+        {
+            if (assemblies == null)
+            {
+                throw new ArgumentNullException(nameof(assemblies));
+            }
+            foreach (var assembly in assemblies)
+            {
+                AddReference(assembly);
+            }
+        }
         #endregion
 
         #endregion
@@ -190,10 +224,12 @@ namespace Simplic.CXUI
         /// <summary>
         /// List of references, which are required for compiling
         /// </summary>
-        public Assembly[] References
+        public IReadOnlyList<Assembly> References
         {
-            get;
-            set;
+            get
+            {
+                return references.ToList();
+            }
         }
 
         /// <summary>

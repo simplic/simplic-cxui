@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplic.CXUI", "Simplic.CXUI\Simplic.CXUI.csproj", "{624CCC63-E7DD-4AC7-9FD1-81701004343C}"
 EndProject
@@ -14,6 +14,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{AC10AC2A-CA3E-4DE3-A6AE-36BAB6071987}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplic.CXUI.IronPython", "Simplic.CXUI.IronPython\Simplic.CXUI.IronPython.csproj", "{BE99ABC0-C57A-4BAA-9EA3-338BFF47F20E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplic.CXUI.JsonPoco", "Simplic.CXUI.JsonPoco\Simplic.CXUI.JsonPoco.csproj", "{C3681CEF-F584-4D91-AEC2-BB8CFAA79C2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplic.CXUI.WebApi2", "Simplic.CXUI.WebApi2\Simplic.CXUI.WebApi2.csproj", "{00850DFD-2BAC-4AAC-9D5D-98B5710A3D63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplic.CXUI.Xaml", "Simplic.CXUI.Xaml\Simplic.CXUI.Xaml.csproj", "{2F3FFD52-C143-4D03-A904-76C4447C6033}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplic.CXUI.ViewModel", "Simplic.CXUI.ViewModel\Simplic.CXUI.ViewModel.csproj", "{9418591C-5B77-45DA-9CB1-6996FC7A24FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +49,22 @@ Global
 		{BE99ABC0-C57A-4BAA-9EA3-338BFF47F20E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE99ABC0-C57A-4BAA-9EA3-338BFF47F20E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE99ABC0-C57A-4BAA-9EA3-338BFF47F20E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3681CEF-F584-4D91-AEC2-BB8CFAA79C2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3681CEF-F584-4D91-AEC2-BB8CFAA79C2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3681CEF-F584-4D91-AEC2-BB8CFAA79C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3681CEF-F584-4D91-AEC2-BB8CFAA79C2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00850DFD-2BAC-4AAC-9D5D-98B5710A3D63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00850DFD-2BAC-4AAC-9D5D-98B5710A3D63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00850DFD-2BAC-4AAC-9D5D-98B5710A3D63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00850DFD-2BAC-4AAC-9D5D-98B5710A3D63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F3FFD52-C143-4D03-A904-76C4447C6033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F3FFD52-C143-4D03-A904-76C4447C6033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F3FFD52-C143-4D03-A904-76C4447C6033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F3FFD52-C143-4D03-A904-76C4447C6033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9418591C-5B77-45DA-9CB1-6996FC7A24FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9418591C-5B77-45DA-9CB1-6996FC7A24FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9418591C-5B77-45DA-9CB1-6996FC7A24FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9418591C-5B77-45DA-9CB1-6996FC7A24FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

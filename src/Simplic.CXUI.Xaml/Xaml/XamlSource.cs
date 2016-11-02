@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simplic.CXUI
+namespace Simplic.CXUI.Xaml
 {
     /// <summary>
     /// Xaml source instance

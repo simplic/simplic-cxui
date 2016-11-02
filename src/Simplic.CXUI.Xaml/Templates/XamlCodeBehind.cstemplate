@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace sample01
+namespace {Namespace}
 {
     /// <summary>
-    /// Interaction logic for CarEditor.xaml
+    /// Interaction logic for {Class}.xaml
     /// </summary>
-    public partial class CarEditor : UserControl
+    public partial class {Class} : {BaseClassNamespace}.{BaseClass}
     {
-        public CarEditor()
+        public {Class}()
         {
             InitializeComponent();
         }
