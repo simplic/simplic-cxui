@@ -30,15 +30,6 @@ namespace Simplic.CXUI.WebApi2
         }
 
         /// <summary>
-        /// Gets or sets the model that will be returned
-        /// </summary>
-        public string Returns
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// Gets or sets a list of attributes
         /// </summary>
         public IList<AttributeDefinition> Attributes
@@ -70,6 +61,48 @@ namespace Simplic.CXUI.WebApi2
         /// Gets or sets the values which will be used to generate action method bodies
         /// </summary>
         public IDictionary<string, object> ActionBodySettings
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the returns definition
+        /// </summary>
+        public IList<ReturnDefinition> Returns
+        {
+            get;
+            set;
+        }
+    }
+
+    /// <summary>
+    /// Contains the return definition
+    /// </summary>
+    public class ReturnDefinition
+    {
+        /// <summary>
+        /// Gets or sets the status-code
+        /// </summary>
+        public int StatusCode
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the return type
+        /// </summary>
+        public string Type
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the return message
+        /// </summary>
+        public string Message
         {
             get;
             set;

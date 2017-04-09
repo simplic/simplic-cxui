@@ -98,7 +98,7 @@ namespace Simplic.CXUI.WebApi2
                         parameter.Append(", ");
                     }
 
-                    parameter.Append($"{param.Name}{(param.Value == null ? "" : $" = {param.Value}")}");
+                    parameter.Append($"{(string.IsNullOrEmpty(param.Name) ? "" : param.Name + " = ")}{(param.Value == null ? "" : $" {param.Value}")}");
                 }
             }
 
@@ -184,6 +184,20 @@ namespace Simplic.CXUI.WebApi2
                                 attributes.Append("\r\n");
                             }
                             attributes.Append($"\t\t{GetAttributeAsString(attr)}");
+                        }
+                    }
+
+                    if (action.Returns != null)
+                    {
+                        foreach (var _return in action.Returns)
+                        {
+                            if (attributes.Length > 0)
+                            {
+                                attributes.Append("\r\n");
+                            }
+                            var _status = (System.Net.HttpStatusCode)_return.StatusCode;
+                            string stringValue = _status.ToString();                            
+                            attributes.Append($"\t\t[Swashbuckle.Swagger.Annotations.SwaggerResponse(System.Net.HttpStatusCode.{stringValue}, \"{_return.Message ?? ""}\", typeof({_return.Type}))]");
                         }
                     }
 
