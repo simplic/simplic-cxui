@@ -39,7 +39,7 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
-    packagesToPack: 'src/Simplic.CXUI.**/*.csproj'
+    packagesToPack: 'src/Simplic.CXUI**/*.csproj'
     configuration: '$(buildConfiguration)'
     versioningScheme: 'off'
 
