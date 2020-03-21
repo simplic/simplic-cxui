@@ -1,0 +1,35 @@
+{
+	"assembly": "Sample02",
+	"rootNamespace": "Sample02",
+	"output": "../../sample-bin/",
+	"useAutogenerateViewModelBase": "false",
+	
+	// List of xaml source
+	"xaml":[
+		"rs.xaml"
+	],
+		
+	// can be of type .json, .cs and .py
+	"viewModels":[
+	],
+
+	// List of poco models
+	"models": [
+	],
+	
+	// List of web api controller
+	"webApiController": [
+	],
+
+	// A list of additional c# code files
+	"sources":[
+		
+	],
+	
+	"ressources":[
+	],
+	
+	// A list of additional references
+	"references":[
+	]
+}

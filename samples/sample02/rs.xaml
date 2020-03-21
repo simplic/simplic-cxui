@@ -1,0 +1,211 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:simplic="http://schemas.simplic-systems.com/2016/xaml/presentation"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d"
+    xmlns:ui="clr-namespace:Simplic.Framework.UI;assembly=Simplic.Framework.Base"
+    xmlns:dbui="clr-namespace:Simplic.Framework.DBUI;assembly=Simplic.Framework.DBUI"
+    xmlns:dcui="clr-namespace:Simplic.Framework.Extension.UI;assembly=Simplic.Framework.Extension"
+    xmlns:ext="clr-namespace:Simplic.Framework.Extension;assembly=Simplic.Framework.Extension"
+    xmlns:templating="clr-namespace:Simplic.Framework.UI.Templating;assembly=Simplic.Framework.Base"
+    xmlns:sac="clr-namespace:Simplic.PlugIn.SAC.Contact.UI;assembly=Simplic.PlugIn.SAC"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <DataTemplate x:Key="ContactWindow">
+        <sac:CompanyContactTabControl x:Name="contactCompanyTabControl">
+            <sac:CompanyContactTabControl.Resources>
+                <templating:TemplateManager x:Key="templateManager"/>
+            </sac:CompanyContactTabControl.Resources>
+            <TabItem Header="Allgemein" Grid.IsSharedSizeScope="True">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="1" VerticalAlignment="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <simplic:UIContentPresenter x:Name="ContactPhotoContentPresenter" Grid.Column="0"
+                             DataTemplateName="ContactPhoto" VerticalAlignment="Top"
+                             IsSelectedTemplateRequired="True"
+                             IsInEditMode="{Binding Source={StaticResource templateManager}, Path=Singleton.IsInEditMode}">
+                            <simplic:UIContentPresenter.Templates>
+                                <simplic:UITemplate TemplatePath="ContactPhotoTemplate.xaml"/>
+                            </simplic:UIContentPresenter.Templates>
+                        </simplic:UIContentPresenter>
+
+                        <simplic:UIContentPresenter x:Name="contactPrimaryPhysicalAddressContentPresenter" Grid.Row="0" Grid.Column="1"
+                            DataTemplateName="ContactPhysicalAddress" VerticalAlignment="Top"
+                            IsSelectedTemplateRequired="True" DataContext="{Binding PrimaryPhysicalAddress}"
+                            IsInEditMode="{Binding Source={StaticResource templateManager}, Path=Singleton.IsInEditMode}">
+                            <simplic:UIContentPresenter.Templates>
+                                <simplic:UITemplate TemplatePath="PhysicalAddressTemplate.xaml" />
+                            </simplic:UIContentPresenter.Templates>
+                        </simplic:UIContentPresenter>
+
+                        <simplic:UIContentPresenter x:Name="contactTypeStatusContentPresenter" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                            DataTemplateName="ContactSubTypeState"
+                            IsSelectedTemplateRequired="True" HorizontalAlignment="Left" VerticalAlignment="Top"
+                            IsInEditMode="{Binding Source={StaticResource templateManager}, Path=Singleton.IsInEditMode}">
+                            <simplic:UIContentPresenter.Templates>
+                                <simplic:UITemplate TemplatePath="SubTypeStateTemplate.xaml" />
+                            </simplic:UIContentPresenter.Templates>
+                        </simplic:UIContentPresenter>
+
+                        <simplic:UIContentPresenter x:Name="contactCategoryContentPresenter"
+                            DataTemplateName="ContactCategory" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                            IsSelectedTemplateRequired="True" VerticalAlignment="Top"
+                            IsInEditMode="{Binding Source={StaticResource templateManager}, Path=Singleton.IsInEditMode}">
+                            <simplic:UIContentPresenter.Templates>
+                                <simplic:UITemplate TemplatePath="ContactCategoryTemplate.xaml" />
+                            </simplic:UIContentPresenter.Templates>
+                        </simplic:UIContentPresenter>
+
+                        <simplic:UIContentPresenter x:Name="contactRepresentativeGroupContentPresenter"
+                            DataTemplateName="ContactRepresentativeGroup" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                            IsSelectedTemplateRequired="True" VerticalAlignment="Top"
+                            IsInEditMode="{Binding Source={StaticResource templateManager}, Path=Singleton.IsInEditMode}">
+                            <simplic:UIContentPresenter.Templates>
+                                <simplic:UITemplate TemplatePath="ContactRepresentativeGroupTemplate.xaml" />
+                            </simplic:UIContentPresenter.Templates>
+                        </simplic:UIContentPresenter>
+
+                        <simplic:UIContentPresenter x:Name="contactTaxGroupContentPresenter" VerticalAlignment="Top"
+                            DataTemplateName="ContactTax" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                            IsSelectedTemplateRequired="True"
+                            IsInEditMode="{Binding Source={StaticResource templateManager}, Path=Singleton.IsInEditMode}">
+                            <simplic:UIContentPresenter.Templates>
+                                <simplic:UITemplate TemplatePath="ContactTaxTemplate.xaml" />
+                            </simplic:UIContentPresenter.Templates>
+                        </simplic:UIContentPresenter>
+
+                        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="2" Grid.RowSpan="6" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <simplic:UIContentPresenter x:Name="contactPhoneNumberContentPresenter" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0"
+                            DataTemplateName="ContactPhoneNumber" DataContext="{Binding PrimaryPhysicalAddress}"
+                            IsSelectedTemplateRequired="True" VerticalAlignment="Top" 
+                            IsInEditMode="{Binding Source={StaticResource templateManager}, Path=Singleton.IsInEditMode}">
+                                    <simplic:UIContentPresenter.Templates>
+                                        <simplic:UITemplate TemplatePath="CompanyPhoneNumberTemplate.xaml" />
+                                    </simplic:UIContentPresenter.Templates>
+                                </simplic:UIContentPresenter>
+
+                                <simplic:UIContentPresenter x:Name="contactEMailAddressContentPresenter" Grid.Row="0" Grid.Column="1"
+                            DataTemplateName="ContactEMailAddress" VerticalAlignment="Top"
+                            IsSelectedTemplateRequired="True" DataContext="{Binding PrimaryPhysicalAddress}"
+                            IsInEditMode="{Binding Source={StaticResource templateManager}, Path=Singleton.IsInEditMode}">
+                                    <simplic:UIContentPresenter.Templates>
+                                        <simplic:UITemplate TemplatePath="EMailAddressTemplate.xaml" />
+                                    </simplic:UIContentPresenter.Templates>
+                                </simplic:UIContentPresenter>
+
+                                <simplic:UIContentPresenter x:Name="contactPersonalAccountOverviewContentPresenter" 
+                            DataTemplateName="ContactPersonalAccount" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                            IsSelectedTemplateRequired="True" VerticalAlignment="Top"
+                            IsInEditMode="{Binding Source={StaticResource templateManager}, Path=Singleton.IsInEditMode}">
+                                    <simplic:UIContentPresenter.Templates>
+                                        <simplic:UITemplate TemplatePath="PersonalAccountOverview.xaml" />
+                                    </simplic:UIContentPresenter.Templates>
+                                </simplic:UIContentPresenter>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <simplic:UIContentPresenter x:Name="contactCommentContentPresenter" Grid.Column="1"
+                            DataTemplateName="ContactComment"
+                            IsSelectedTemplateRequired="True"
+                            IsInEditMode="{Binding Source={StaticResource templateManager}, Path=Singleton.IsInEditMode}">
+                            <simplic:UIContentPresenter.Templates>
+                                <simplic:UITemplate TemplatePath="ContactCommentTemplate.xaml" />
+                            </simplic:UIContentPresenter.Templates>
+                        </simplic:UIContentPresenter>
+                        <simplic:UIContentPresenter x:Name="referencedContactsContentPresenter" Grid.Column="2"
+                            DataTemplateName="ContactReference"
+                            IsSelectedTemplateRequired="True"
+                            IsInEditMode="{Binding Source={StaticResource templateManager}, Path=Singleton.IsInEditMode}">
+                            <simplic:UIContentPresenter.Templates>
+                                <simplic:UITemplate TemplatePath="ContactReferenceTemplate.xaml" />
+                            </simplic:UIContentPresenter.Templates>
+                        </simplic:UIContentPresenter>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Adressen">
+                <simplic:UIContentPresenter x:Name="contactPhysicalAddressContentPresenter" Grid.Row="3"
+                            DataTemplateName="ContactPhysicalAddressSelectorTemplate"
+                            IsSelectedTemplateRequired="True"
+                            IsInEditMode="{Binding Source={StaticResource templateManager}, Path=Singleton.IsInEditMode}">
+                    <simplic:UIContentPresenter.Templates>
+                        <simplic:UITemplate TemplatePath="PhysicalAddressSelectorTemplate.xaml" />
+                    </simplic:UIContentPresenter.Templates>
+                </simplic:UIContentPresenter>
+            </TabItem>
+            <TabItem Header="Personenkonten" IsSelected="{Binding PersonalAccountTabIsSelected, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+                <simplic:UIContentPresenter x:Name="contactPersonalAccountControlContentPresenter" Grid.Row="2" Grid.Column="1"
+                            DataTemplateName="ContactPersonalAccount"
+                            IsSelectedTemplateRequired="True"
+                            IsInEditMode="{Binding Source={StaticResource templateManager}, Path=Singleton.IsInEditMode}">
+                    <simplic:UIContentPresenter.Templates>
+                        <simplic:UITemplate TemplatePath="PersonalAccountTabItemTemplate.xaml" />
+                    </simplic:UIContentPresenter.Templates>
+                </simplic:UIContentPresenter>
+            </TabItem>
+            <TabItem Header="Banken">
+                <simplic:UIContentPresenter x:Name="contactBankContentPresenter" Grid.Row="0" Grid.Column="0"
+                            DataTemplateName="ContactBank"
+                            IsSelectedTemplateRequired="True"
+                            IsInEditMode="{Binding Source={StaticResource templateManager}, Path=Singleton.IsInEditMode}">
+                    <simplic:UIContentPresenter.Templates>
+                        <simplic:UITemplate TemplatePath="BankTemplate.xaml" />
+                    </simplic:UIContentPresenter.Templates>
+                </simplic:UIContentPresenter>
+            </TabItem>
+            <TabItem Header="Auswertungen">
+                <simplic:UIContentPresenter x:Name="contactAnalysisContentPresenter" Grid.Row="0" Grid.Column="0"
+                            DataTemplateName="ContactAnalysis"
+                            IsSelectedTemplateRequired="True"
+                            IsInEditMode="{Binding Source={StaticResource templateManager}, Path=Singleton.IsInEditMode}">
+                    <simplic:UIContentPresenter.Templates>
+                        <simplic:UITemplate TemplatePath="AnalysisTemplate.xaml" />
+                    </simplic:UIContentPresenter.Templates>
+                </simplic:UIContentPresenter>
+            </TabItem>
+            <TabItem Header="Verknüpfungen">
+                <simplic:ContextAreaControl Name="contextAreaControl" InstanceDataGuid="{Binding Model.Id}" StackName="STACK_Contact" />
+            </TabItem>
+        </sac:CompanyContactTabControl>
+    </DataTemplate>
+</ResourceDictionary>

@@ -26,7 +26,7 @@ namespace CXUI
         static void Main(string[] args)
         {
             Console.WriteLine("Simplic Compiled XAML UI - Version 1.0.0.0");
-
+            System.Diagnostics.Debugger.Launch();
             var context = CommandShellManager.Singleton.CreateShellContext("cxui");
 
             context.RegisterMethod("build", Build, "config");

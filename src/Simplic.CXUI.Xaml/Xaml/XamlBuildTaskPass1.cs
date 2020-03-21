@@ -86,7 +86,20 @@ namespace Simplic.CXUI.Xaml
                 // Add all references as XamlItem
                 if (CXUIBuildEngine.References != null)
                 {
-                    _task.References = CXUIBuildEngine.References.Select(item => new XamlItem(item.Location)).ToArray();
+                    var _xi = new List<XamlItem>();
+                    foreach (var l in CXUIBuildEngine.References)
+                    {
+                        try
+                        {
+                            _xi.Add(new XamlItem(l.Location));
+                        }
+                        catch
+                        {
+                            /* swallow */
+                        }
+                    }
+
+                    _task.References = _xi.ToArray();
                 }
 
                 if (!_task.Execute())
@@ -96,8 +109,10 @@ namespace Simplic.CXUI.Xaml
 
                 string generatedPath = Path.Combine(TempOutputDirectory, _xaml.RelativePath, Path.GetFileNameWithoutExtension(_xaml.Name) + ".g.cs");
 
-                // Add all generated bamls
-                CXUIBuildEngine.GeneratedFiles.Add(new GeneratedFile(generatedPath));
+                // Add all generated bamls. But only of generated cs file exists
+                if(File.Exists(generatedPath))
+                    CXUIBuildEngine.GeneratedFiles.Add(new GeneratedFile(generatedPath));
+
                 foreach (var baml in _task.AllGeneratedFiles)
                 {
                     CXUIBuildEngine.GeneratedFiles.Add(new GeneratedFile(baml.ItemSpec));
