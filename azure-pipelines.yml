@@ -36,7 +36,7 @@ steps:
       command: "restore"
       restoreSolution: "**/*.sln"
       feedsToUse: "select"
-      vstsFeed: "f7087ef5-bf6f-48b2-8b8b-5e513f4a7a9e"\
+      vstsFeed: "f7087ef5-bf6f-48b2-8b8b-5e513f4a7a9e"
 
   - ${{ if not(eq(variables['Build.Reason'], 'PullRequest')) }}:
       - template: version-number-update-template.yml@infrastructure
